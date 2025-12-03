@@ -8,7 +8,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ProductImage from '../../components/ProductImage'
 import { useCart } from '../../contexts/CartContext'
-import { useScrollAnimation } from '../../components/UniqueEffects'
+import { useScrollAnimation, FloatingCart } from '../../components/UniqueEffects'
 
 const products = [
   { id: 1, name: 'Chocolate Truffle Delight', price: 899, description: 'Rich chocolate cake layered with smooth truffle cream and chocolate shavings', ingredients: 'Flour, Chocolate, Cream, Sugar, Eggs, Butter', category: 'birthday', flavor: 'chocolate', occasion: 'birthday', rating: 4.8, reviews: 124, image: '/images/products/chocolate-truffle-delight.jpg', eggless: false },
@@ -32,7 +32,7 @@ const customerReviews = [
 export default function ProductDetail() {
   const router = useRouter()
   const { id } = router.query
-  const { addToCart } = useCart()
+  const { addToCart, cart } = useCart()
   
   const [selectedWeight, setSelectedWeight] = useState('1kg')
   const [message, setMessage] = useState('')
@@ -47,10 +47,10 @@ export default function ProductDetail() {
     return (
       <>
         <Header />
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
-            <Link href="/products" className="btn-primary">
+            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Product Not Found</h1>
+            <Link href="/products" className="btn-primary bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700">
               Back to Products
             </Link>
           </div>
@@ -71,37 +71,41 @@ export default function ProductDetail() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
-        <div className="mb-6 text-sm">
-          <Link href="/" className="text-gray-600 hover:text-primary-600">Home</Link>
+        <div className="mb-6 text-sm scroll-animate">
+          <Link href="/" className="text-gray-600 hover:text-pink-600 transition-colors">Home</Link>
           <span className="mx-2 text-gray-400">/</span>
-          <Link href="/products" className="text-gray-600 hover:text-primary-600">Products</Link>
+          <Link href="/products" className="text-gray-600 hover:text-pink-600 transition-colors">Products</Link>
           <span className="mx-2 text-gray-400">/</span>
-          <span className="text-gray-900">{product.name}</span>
+          <span className="font-semibold text-gray-900">{product.name}</span>
         </div>
 
         {/* Product Details */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Image */}
-          <div className="relative h-96 lg:h-full rounded-xl overflow-hidden">
+          <div className="relative h-96 lg:h-full rounded-2xl overflow-hidden shadow-2xl scroll-animate group">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
             <ProductImage
               src={product.image}
               alt={product.name}
               fill
-              className="object-cover"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
             {product.eggless && (
-              <span className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-lg font-semibold">
-                Eggless
+              <span className="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full font-bold shadow-lg z-20">
+                🌱 Eggless
               </span>
             )}
           </div>
 
           {/* Details */}
-          <div>
-            <h1 className="text-4xl font-display font-bold mb-4">{product.name}</h1>
+          <div className="scroll-animate">
+            <h1 className="text-4xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+              <Sparkles className="inline-block mr-2 text-pink-600" size={32} />
+              {product.name}
+            </h1>
             
             <div className="flex items-center mb-4">
-              <div className="flex items-center mr-4">
+              <div className="flex items-center mr-4 bg-yellow-50 px-3 py-1 rounded-full">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -110,11 +114,11 @@ export default function ProductDetail() {
                   />
                 ))}
               </div>
-              <span className="text-lg font-semibold">{product.rating}</span>
-              <span className="text-gray-600 ml-2">({product.reviews} reviews)</span>
+              <span className="text-lg font-bold">{product.rating}</span>
+              <span className="text-gray-600 ml-2 font-medium">({product.reviews} reviews)</span>
             </div>
 
-            <p className="text-3xl font-bold text-primary-600 mb-6">₹{product.price}</p>
+            <p className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text text-transparent mb-6">₹{product.price}</p>
 
             <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
 
@@ -124,27 +128,27 @@ export default function ProductDetail() {
             </div>
 
             <div className="space-y-3 mb-6">
-              <div className="flex items-center text-gray-700">
-                <Award className="mr-2 text-primary-600" size={20} />
-                <span>Made with premium quality ingredients</span>
+              <div className="flex items-center text-gray-700 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg">
+                <Award className="mr-3 text-pink-600" size={24} />
+                <span className="font-medium">Made with premium quality ingredients</span>
               </div>
-              <div className="flex items-center text-gray-700">
-                <Truck className="mr-2 text-primary-600" size={20} />
-                <span>Same-day delivery available</span>
+              <div className="flex items-center text-gray-700 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg">
+                <Truck className="mr-3 text-pink-600" size={24} />
+                <span className="font-medium">Same-day delivery available</span>
               </div>
             </div>
 
             <div className="mb-6">
-              <label className="block font-semibold mb-2">Select Weight:</label>
+              <label className="block font-bold mb-3">Select Weight:</label>
               <div className="flex gap-3">
                 {['500g', '1kg', '2kg'].map((weight) => (
                   <button
                     key={weight}
                     onClick={() => setSelectedWeight(weight)}
-                    className={`px-6 py-3 border-2 rounded-lg transition-all ${
+                    className={`px-6 py-3 border-2 rounded-xl transition-all duration-300 font-semibold ${
                       selectedWeight === weight
-                        ? 'border-primary-600 bg-primary-600 text-white'
-                        : 'border-gray-300 hover:border-primary-600 hover:text-primary-600'
+                        ? 'border-pink-600 bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-lg scale-105'
+                        : 'border-gray-300 hover:border-pink-600 hover:text-pink-600 hover:scale-105'
                     }`}
                   >
                     {weight}
@@ -154,16 +158,16 @@ export default function ProductDetail() {
             </div>
 
             <div className="mb-6">
-              <label className="block font-semibold mb-2">Custom Message (Optional):</label>
+              <label className="block font-bold mb-3">Custom Message (Optional):</label>
               <input
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="e.g., Happy Birthday Sarah!"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all"
                 maxLength={50}
               />
-              <p className="text-sm text-gray-500 mt-1">Add a personalized message to your cake</p>
+              <p className="text-sm text-gray-600 mt-2 font-medium">✨ Add a personalized message to your cake</p>
             </div>
 
             <div className="flex gap-4 mb-6">
@@ -183,31 +187,40 @@ export default function ProductDetail() {
                   setAdded(true)
                   setTimeout(() => setAdded(false), 2000)
                 }}
-                className="flex-1 btn-primary flex items-center justify-center gap-2"
+                className={`flex-1 btn-primary flex items-center justify-center gap-2 rounded-xl font-bold text-lg transition-all duration-300 ${
+                  added ? 'bg-green-600 hover:bg-green-700' : 'bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 hover:shadow-xl hover:scale-105'
+                }`}
               >
                 {added ? (
                   <>
-                    <Check size={20} />
+                    <Check size={24} className="animate-bounce" />
                     Added to Cart!
                   </>
                 ) : (
                   <>
-                    <ShoppingCart size={20} />
+                    <ShoppingCart size={24} />
                     Add to Cart
                   </>
                 )}
               </button>
-              <button className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:border-primary-600 transition-all">
-                <Heart size={24} className="text-gray-600" />
+              <button 
+                onClick={() => setLiked(!liked)}
+                className={`px-6 py-3 border-2 rounded-xl transition-all duration-300 ${
+                  liked ? 'border-pink-600 bg-pink-50' : 'border-gray-300 hover:border-pink-600'
+                }`}
+              >
+                <Heart size={24} className={`transition-all duration-300 ${
+                  liked ? 'text-pink-600 fill-pink-600 scale-110' : 'text-gray-600'
+                }`} />
               </button>
             </div>
 
-            <div className="bg-secondary-50 p-6 rounded-lg">
-              <h3 className="font-semibold mb-3">Need customization?</h3>
-              <p className="text-sm text-gray-700 mb-4">
+            <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-2xl border-2 border-pink-200 shadow-md">
+              <h3 className="font-bold mb-3 text-lg bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">🎨 Need customization?</h3>
+              <p className="text-sm text-gray-700 mb-4 font-medium">
                 Want a custom design, message, or special requirements? We can make it perfect for you!
               </p>
-              <Link href="/custom-order" className="btn-secondary">
+              <Link href="/custom-order" className="btn-secondary bg-gradient-to-r from-pink-600 to-purple-600 text-white hover:from-pink-700 hover:to-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-300">
                 Create Custom Order
               </Link>
             </div>
@@ -216,22 +229,25 @@ export default function ProductDetail() {
 
         {/* Customer Reviews */}
         <div className="mb-16">
-          <h2 className="text-3xl font-display font-bold mb-8">Customer Reviews</h2>
+          <h2 className="text-3xl font-display font-bold mb-8 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent scroll-animate">
+            <Sparkles className="inline-block mr-2 text-pink-600" size={28} />
+            Customer Reviews
+          </h2>
           <div className="space-y-6">
             {customerReviews.map((review, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-lg shadow-md">
+              <div key={idx} className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 scroll-animate" style={{ animationDelay: `${idx * 100}ms` }}>
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h4 className="font-semibold">{review.name}</h4>
-                    <p className="text-sm text-gray-500">{review.date}</p>
+                    <h4 className="font-bold text-lg">{review.name}</h4>
+                    <p className="text-sm text-gray-500 font-medium">{review.date}</p>
                   </div>
-                  <div className="flex">
+                  <div className="flex bg-yellow-50 px-3 py-1 rounded-full">
                     {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
+                      <Star key={i} size={18} className="text-yellow-400 fill-yellow-400" />
                     ))}
                   </div>
                 </div>
-                <p className="text-gray-700">{review.comment}</p>
+                <p className="text-gray-700 leading-relaxed">{review.comment}</p>
               </div>
             ))}
           </div>
@@ -239,26 +255,30 @@ export default function ProductDetail() {
 
         {/* Related Products */}
         <div>
-          <h2 className="text-3xl font-display font-bold mb-8">You May Also Like</h2>
+          <h2 className="text-3xl font-display font-bold mb-8 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent scroll-animate">
+            <Sparkles className="inline-block mr-2 text-pink-600" size={28} />
+            You May Also Like
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {relatedProducts.map((relProduct) => (
-              <Link key={relProduct.id} href={`/products/${relProduct.id}`} className="group">
-                <div className="card overflow-hidden">
-                  <div className="relative h-64">
+            {relatedProducts.map((relProduct, idx) => (
+              <Link key={relProduct.id} href={`/products/${relProduct.id}`} className="group scroll-animate" style={{ animationDelay: `${idx * 100}ms` }}>
+                <div className="card overflow-hidden hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                  <div className="relative h-64 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 via-white/50 to-pink-500/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out z-20"></div>
                     <ProductImage
                       src={relProduct.image}
                       alt={relProduct.name}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
                   <div className="p-4">
-                    <h3 className="text-lg font-semibold mb-2">{relProduct.name}</h3>
+                    <h3 className="text-lg font-bold mb-2">{relProduct.name}</h3>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-primary-600">₹{relProduct.price}</span>
-                      <div className="flex items-center">
-                        <Star size={16} className="text-yellow-400 fill-yellow-400" />
-                        <span className="ml-1 text-sm font-semibold">{relProduct.rating}</span>
+                      <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text text-transparent">₹{relProduct.price}</span>
+                      <div className="flex items-center bg-yellow-100 px-2 py-1 rounded-full">
+                        <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                        <span className="ml-1 text-sm font-bold text-yellow-700">{relProduct.rating}</span>
                       </div>
                     </div>
                   </div>
@@ -269,6 +289,7 @@ export default function ProductDetail() {
         </div>
       </div>
 
+      <FloatingCart count={cart.length} total={cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)} />
       <Footer />
     </>
   )

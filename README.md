@@ -434,4 +434,4 @@ For support, email info@thecaketime.com or call +91 123 456 7890.
 Built with ❤️ by TheCakeTime Team
 
 ## Iterface Design
-![Alt text](bakery-website/UiDesign.png)
+![Alt text](UiDesign.png)

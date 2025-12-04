@@ -11,6 +11,35 @@ a, button, input, textarea, select {
   cursor: none !important;
 }
 
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #fdf2f8, #fce7f3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ec4899, #a855f7);
+  border-radius: 10px;
+  border: 2px solid #fdf2f8;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #db2777, #9333ea);
+  border: 2px solid #fce7f3;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ec4899 #fdf2f8;
+}
+
 /* Scroll Animations */
 .scroll-animate {
   opacity: 0;
@@ -239,6 +268,28 @@ a, button, input, textarea, select {
   .animate-scroll {
     animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
   }
+
+  .glassmorphism {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .neon-glow {
+    text-shadow: 0 0 10px rgba(236, 72, 153, 0.8),
+                 0 0 20px rgba(236, 72, 153, 0.6),
+                 0 0 30px rgba(236, 72, 153, 0.4);
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .animate-zoom-in {
+    animation: zoomIn 0.3s ease-out;
+  }
+
+  .skeleton {
+    @apply bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse;
+  }
 }
 
 @keyframes scroll {
@@ -248,4 +299,75 @@ a, button, input, textarea, select {
   100% {
     transform: translateX(-50%);
   }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes zoomIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideInUp {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInDown {
+  0% { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Hover zoom effect for images */
+.hover-zoom {
+  overflow: hidden;
+}
+
+.hover-zoom img {
+  transition: transform 0.5s ease;
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* Reading Mode */
+.reading-mode {
+  background-color: #f5f1e8 !important;
+  color: #3a3a3a !important;
+}
+
+.reading-mode * {
+  background-color: transparent !important;
+  color: #3a3a3a !important;
+}
+
+.reading-mode h1, .reading-mode h2, .reading-mode h3 {
+  color: #2a2a2a !important;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  filter: contrast(1.5);
+}
+
+.high-contrast * {
+  border-color: #000 !important;
+}
+
+/* Dyslexia Font */
+.dyslexia-font, .dyslexia-font * {
+  font-family: 'Comic Sans MS', 'Arial', sans-serif !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.8 !important;
+}
+
+/* Backface hidden utility */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }

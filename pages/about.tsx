@@ -1,18 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Award, Heart, Users, TrendingUp, Sparkles } from 'lucide-react'
+import { Award, Heart, Users, TrendingUp, Sparkles, ChefHat, Star, Target } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { useScrollAnimation, FloatingCart } from '../components/UniqueEffects'
 import { useCart } from '../contexts/CartContext'
 import { useState, useEffect } from 'react'
+import { StorySection, JourneyTimeline, AnimatedStat } from '../components/StorytellingComponents'
 
 const milestones = [
-  { year: '2020', event: 'TheCakeTime Founded', description: 'Started with a small kitchen and big dreams' },
-  { year: '2021', event: 'First 1000 Customers', description: 'Reached our first milestone with overwhelming support' },
-  { year: '2022', event: 'Awards & Recognition', description: 'Awarded Best Local Bakery by Delhi Food Critics' },
-  { year: '2023', event: 'Expansion', description: 'Opened second location and expanded delivery radius' },
-  { year: '2024', event: 'Going Digital', description: 'Launched online platform for easier ordering' },
+  { year: '2020', title: 'TheCakeTime Founded', description: 'Started with a small kitchen and big dreams', icon: Sparkles },
+  { year: '2021', title: 'First 1000 Customers', description: 'Reached our first milestone with overwhelming support', icon: Heart },
+  { year: '2022', title: 'Awards & Recognition', description: 'Awarded Best Local Bakery by Delhi Food Critics', icon: Award },
+  { year: '2023', title: 'Expansion', description: 'Opened second location and expanded delivery radius', icon: TrendingUp },
+  { year: '2024', title: 'Going Digital', description: 'Launched online platform for easier ordering', icon: Star },
 ]
 
 const values = [
@@ -23,9 +24,9 @@ const values = [
 ]
 
 const team = [
-  { name: 'Chef Rajesh Kumar', role: 'Head Baker & Founder', image: 'https://via.placeholder.com/300x300/4a2c2a/ffffff?text=Chef+Rajesh' },
-  { name: 'Priya Sharma', role: 'Creative Designer', image: 'https://via.placeholder.com/300x300/8b1538/ffffff?text=Priya' },
-  { name: 'Amit Patel', role: 'Pastry Specialist', image: 'https://via.placeholder.com/300x300/d2691e/ffffff?text=Amit' },
+  { name: 'Chef Rajesh Kumar', role: 'Head Baker & Founder', image: 'https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=400&q=80' },
+  { name: 'Priya Sharma', role: 'Creative Designer', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80' },
+  { name: 'Amit Patel', role: 'Pastry Specialist', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80' },
 ]
 
 export default function About() {
@@ -64,37 +65,134 @@ export default function About() {
         </div>
       </section>
 
-      {/* Our Story */}
+      {/* Our Story with Enhanced Narrative */}
       <section className="section-padding bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="scroll-animate">
-              <h2 className="text-4xl font-display font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Our Story</h2>
-              <div className="space-y-4 text-gray-700 leading-relaxed">
-                <p>
-                  TheCakeTime began in 2020 with a simple belief: every celebration deserves a perfect cake. 
-                  What started as a small home kitchen operation has grown into one of Delhi's most loved bakeries.
+          <StorySection>
+            <div className="text-center mb-12">
+              <div className="inline-block px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-bold mb-4">
+                📖 OUR STORY
+              </div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                From a Dream to Your Table
+              </h2>
+            </div>
+          </StorySection>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <StorySection delay={0.2}>
+              <div className="space-y-6 text-gray-700 leading-relaxed text-lg">
+                <p className="text-2xl font-semibold text-pink-600">
+                  It all started with a simple belief...
                 </p>
                 <p>
-                  Our founder, Chef Rajesh Kumar, brought together a passion for baking with years of 
-                  professional training from culinary institutes. His vision was to create cakes that 
-                  not only taste amazing but also look like works of art.
+                  Every celebration deserves a perfect cake. In 2020, in a small home kitchen filled with the aroma 
+                  of vanilla and chocolate, Chef Rajesh Kumar turned this belief into reality. Armed with years of 
+                  culinary training and an unwavering passion for baking, he founded TheCakeTime.
                 </p>
                 <p>
-                  Today, we serve hundreds of happy customers every month, creating custom cakes for 
-                  birthdays, weddings, anniversaries, and every celebration in between. Each cake is 
-                  made fresh daily with the finest ingredients and loads of love.
+                  The first cake we made was for a neighbor's daughter's birthday. When we saw her face light up, 
+                  we knew we had found our calling. That moment - that pure joy - became our mission.
+                </p>
+                <p>
+                  Today, we're not just a bakery. We're memory makers, celebration creators, and dream bakers. 
+                  Each cake tells a story, and we're honored to be part of yours.
+                </p>
+                <div className="flex items-center gap-4 pt-4 border-t border-pink-200">
+                  <ChefHat className="text-pink-600" size={32} />
+                  <div>
+                    <p className="font-bold text-gray-900">Chef Rajesh Kumar</p>
+                    <p className="text-sm text-gray-600">Founder & Head Baker</p>
+                  </div>
+                </div>
+              </div>
+            </StorySection>
+            
+            <StorySection delay={0.4}>
+              <div className="relative">
+                <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
+                  <Image
+                    src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80"
+                    alt="Our Bakery"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-pink-600/30 to-purple-600/30"></div>
+                  
+                  {/* Floating stats on image */}
+                  <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                    <div className="text-3xl font-bold text-pink-600">2020</div>
+                    <div className="text-sm text-gray-600">Est.</div>
+                  </div>
+                  
+                  <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <Heart className="text-pink-600 fill-pink-600" size={24} />
+                      <div>
+                        <div className="text-2xl font-bold text-pink-600">15K+</div>
+                        <div className="text-xs text-gray-600">Happy Customers</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Decorative element */}
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full blur-3xl opacity-30 -z-10"></div>
+              </div>
+            </StorySection>
+          </div>
+          
+          {/* Mission & Vision Cards */}
+          <div className="grid md:grid-cols-2 gap-8 mt-16">
+            <StorySection delay={0.3}>
+              <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-8 rounded-2xl border-2 border-pink-200 hover:shadow-xl transition-all">
+                <Target className="text-pink-600 mb-4" size={40} />
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                <p className="text-gray-700 leading-relaxed text-lg">
+                  To create exceptional cakes that transform ordinary moments into extraordinary celebrations. 
+                  We believe every cake should be a masterpiece - beautiful, delicious, and made with love.
                 </p>
               </div>
+            </StorySection>
+            
+            <StorySection delay={0.4}>
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border-2 border-purple-200 hover:shadow-xl transition-all">
+                <Sparkles className="text-purple-600 mb-4" size={40} />
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                <p className="text-gray-700 leading-relaxed text-lg">
+                  To be the most trusted name in celebration cakes, known for quality, creativity, and care. 
+                  We aspire to be part of every special moment, spreading joy one cake at a time.
+                </p>
+              </div>
+            </StorySection>
+          </div>
+        </div>
+      </section>
+      
+      {/* Stats Section */}
+      <section className="section-padding bg-gradient-to-br from-pink-600 via-purple-600 to-pink-700 text-white">
+        <div className="max-w-6xl mx-auto">
+          <StorySection>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-white">
+                By the Numbers
+              </h2>
+              <p className="text-pink-100 text-lg">Our journey in statistics</p>
             </div>
-            <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl scroll-animate hover:scale-105 transition-transform duration-500">
-              <Image
-                src="https://via.placeholder.com/600x600/ef5844/ffffff?text=Our+Bakery"
-                alt="Our Bakery"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-pink-600/20 to-purple-600/20"></div>
+          </StorySection>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <AnimatedStat value={15000} suffix="+" label="Happy Customers" icon={Users} />
+            </div>
+            <div className="text-center">
+              <AnimatedStat value={25000} suffix="+" label="Cakes Baked" icon={Heart} />
+            </div>
+            <div className="text-center">
+              <AnimatedStat value={98} suffix="%" label="Satisfaction Rate" icon={Star} />
+            </div>
+            <div className="text-center">
+              <AnimatedStat value={12} suffix="+" label="Master Bakers" icon={Award} />
             </div>
           </div>
         </div>
@@ -124,26 +222,24 @@ export default function About() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section-padding bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-display font-bold text-center mb-12 scroll-animate bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Our Journey</h2>
-          <div className="space-y-8">
-            {milestones.map((milestone, idx) => (
-              <div key={idx} className="flex gap-6 scroll-animate" style={{ animationDelay: `${idx * 100}ms` }}>
-                <div className="flex-shrink-0 w-24 text-right">
-                  <span className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">{milestone.year}</span>
-                </div>
-                <div className="flex-grow pb-8 border-l-2 border-gradient-to-b from-pink-400 to-purple-400 pl-6 relative">
-                  <div className="absolute w-4 h-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full -left-[9px] top-2 shadow-lg animate-pulse" />
-                  <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="text-xl font-bold mb-2 text-gray-900">{milestone.event}</h3>
-                    <p className="text-gray-600">{milestone.description}</p>
-                  </div>
-                </div>
+      {/* Timeline with Enhanced Design */}
+      <section className="section-padding bg-gradient-to-b from-white via-pink-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <StorySection>
+            <div className="text-center mb-8">
+              <div className="inline-block px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-bold mb-4">
+                🎂 MILESTONES
               </div>
-            ))}
-          </div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                Our Journey Through Time
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Every milestone tells a story of growth, passion, and the amazing community that supported us
+              </p>
+            </div>
+          </StorySection>
+          
+          <JourneyTimeline milestones={milestones} />
         </div>
       </section>
 

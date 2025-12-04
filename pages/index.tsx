@@ -13,19 +13,36 @@ import { CardContainer, CardBody, CardItem } from '../components/ui/3d-card'
 import WobbleCardDemo from '../components/wobble-card-demo'
 import { InlineTextReveal } from '../components/ui/inline-text-reveal'
 import { FollowingPointerDemo } from '../components/FollowingPointerDemo'
+import { StatsSection } from '../components/AnimatedCounter'
+import { useToast } from '../components/ToastNotification'
+import { QuickViewModal, useQuickView } from '../components/QuickViewModal'
+import { FAQAccordion } from '../components/FAQAccordion'
+import { TypewriterEffect, ImageComparisonSlider } from '../components/EnhancedEffects'
+import { ParticleButton } from '../components/Confetti'
+import { 
+  StorySection, 
+  JourneyTimeline, 
+  SensoryCard, 
+  CustomerStory, 
+  BehindTheScenes,
+  AnimatedStat,
+  FlavorJourney
+} from '../components/StorytellingComponents'
+import { ScrollProgressBar, ScrollToTopButton } from '../components/ScrollProgress'
+import { Eye, Waves, Coffee, Wind, Users, Sparkles as SparklesIcon } from 'lucide-react'
 
 const categories = [
-  { name: 'Birthday Cakes', image: '/images/categories/birthday-cakes.jpg', link: '/products?category=birthday' },
-  { name: 'Custom Cakes', image: '/images/categories/custom-cakes.jpg', link: '/custom-order' },
-  { name: 'Pastries', image: '/images/categories/pastries.jpg', link: '/products?category=pastries' },
-  { name: 'Seasonal Specials', image: '/images/categories/seasonal-specials.jpg', link: '/products?category=seasonal' },
+  { name: 'Birthday Cakes', image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=800&q=80', link: '/products?category=birthday' },
+  { name: 'Custom Cakes', image: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=800&q=80', link: '/custom-order' },
+  { name: 'Pastries', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80', link: '/products?category=pastries' },
+  { name: 'Seasonal Specials', image: 'https://images.unsplash.com/photo-156732737-3d2b85eb5b5d?w=800&q=80', link: '/products?category=seasonal' },
 ]
 
 const bestSellers = [
-  { id: 1, name: 'Chocolate Truffle Delight', price: 899, rating: 4.8, image: '/images/products/chocolate-truffle-delight.jpg' },
-  { id: 2, name: 'Red Velvet Romance', price: 799, rating: 4.9, image: '/images/products/red-velvet-romance.jpg' },
-  { id: 3, name: 'Vanilla Dream', price: 699, rating: 4.7, image: '/images/products/vanilla-dream.jpg' },
-  { id: 4, name: 'Black Forest Classic', price: 849, rating: 4.8, image: '/images/products/black-forest-classic.jpg' },
+  { id: 1, name: 'Chocolate Truffle Delight', price: 899, rating: 4.8, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80' },
+  { id: 2, name: 'Red Velvet Romance', price: 799, rating: 4.9, image: 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80' },
+  { id: 3, name: 'Vanilla Dream', price: 699, rating: 4.7, image: 'https://images.unsplash.com/photo-1588195538326-c5b1e5b80857?w=800&q=80' },
+  { id: 4, name: 'Black Forest Classic', price: 849, rating: 4.8, image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=800&q=80' },
 ]
 
 const testimonials = [
@@ -41,9 +58,84 @@ const usps = [
   { icon: Award, title: 'Certified Bakers', description: 'Experienced professionals with awards' },
 ]
 
+const journeyMilestones = [
+  { year: '2020', title: 'The Dream Begins', description: 'Started in a small home kitchen with a passion for creating perfect cakes', icon: Sparkles },
+  { year: '2021', title: '1000 Sweet Celebrations', description: 'Reached our first milestone - 1000 happy customers and countless memories', icon: Heart },
+  { year: '2022', title: 'Award-Winning Excellence', description: 'Recognized as "Best Local Bakery" by food critics and loved by the community', icon: Award },
+  { year: '2023', title: 'Growing Together', description: 'Expanded our team and delivery reach to serve more neighborhoods', icon: Users },
+  { year: '2024', title: 'Digital Innovation', description: 'Launched online platform making cake ordering easier than ever', icon: Sparkles },
+]
+
+const sensoryExperiences = [
+  { sense: 'Sight', icon: Eye, title: 'Feast for the Eyes', description: 'Each cake is a masterpiece, adorned with intricate designs, vibrant colors, and artistic decorations that captivate before the first bite.' },
+  { sense: 'Aroma', icon: Waves, title: 'Irresistible Fragrance', description: 'The sweet scent of vanilla, rich chocolate, and freshly baked goodness fills the air, awakening your senses and building anticipation.' },
+  { sense: 'Taste', icon: Coffee, title: 'Flavor Symphony', description: 'Premium Belgian chocolate, Madagascar vanilla, and fresh cream dance on your palate in perfect harmony, creating unforgettable moments.' },
+  { sense: 'Texture', icon: Wind, title: 'Velvety Perfection', description: 'From light, fluffy sponge to silky smooth frosting - every layer offers a different textural delight that melts in your mouth.' },
+]
+
+const customerStories = [
+  {
+    name: 'Priya',
+    occasion: 'Daughter\'s 5th Birthday',
+    quote: 'This wasn\'t just a cake, it was magic wrapped in frosting',
+    story: 'When my daughter saw her unicorn cake, her eyes lit up like stars. The cake was exactly what she had drawn in her little notebook - down to the rainbow mane and golden horn. But what made it truly special was watching her face as she made her wish. TheCakeTime didn\'t just deliver a cake; they delivered a memory that will last forever. Every guest at the party couldn\'t stop talking about how beautiful and delicious it was. Three weeks later, my daughter still talks about her "magical unicorn cake" and has already started planning next year\'s cake with me!',
+    image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=800&q=80'
+  },
+  {
+    name: 'Rahul & Anjali',
+    occasion: '10th Anniversary',
+    quote: 'They captured our love story in layers of perfection',
+    story: 'For our 10th anniversary, we wanted something special that told our story. The team at TheCakeTime sat with us, listened to our journey, and created a three-tier masterpiece. The bottom tier represented our first date at a coffee shop with coffee-flavored sponge, the middle tier had red velvet for our wedding, and the top tier was vanilla - our daughter\'s favorite. Each layer was a chapter of our life together. When we cut into it at our anniversary party, we weren\'t just cutting a cake - we were celebrating a decade of memories. It was moist, flavorful, and absolutely stunning. Our guests were amazed, and we were in tears. Thank you for making our anniversary unforgettable!',
+    image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=800&q=80'
+  }
+]
+
+const bakingProcess = [
+  { 
+    step: 'Selection', 
+    title: 'Handpicking Premium Ingredients', 
+    description: 'Every morning begins with carefully selecting the finest ingredients. We source Belgian chocolate, farm-fresh eggs, pure vanilla extract, and organic flour. Quality ingredients are the foundation of exceptional taste.',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80'
+  },
+  { 
+    step: 'Crafting', 
+    title: 'Expert Hands at Work', 
+    description: 'Our master bakers, each with over 10 years of experience, carefully measure, mix, and prepare each batter. Every cake is made from scratch - no preservatives, no shortcuts, just pure craftsmanship.',
+    image: 'https://images.unsplash.com/photo-1607478900766-efe13248b125?w=800&q=80'
+  },
+  { 
+    step: 'Baking', 
+    title: 'Perfection in the Oven', 
+    description: 'Temperature, timing, and technique - these three elements must align perfectly. We monitor each cake, ensuring it rises beautifully and develops that golden perfection. The aroma that fills our bakery is pure magic.',
+    image: 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80'
+  },
+  { 
+    step: 'Decorating', 
+    title: 'Artistry Meets Flavor', 
+    description: 'This is where your vision comes to life. Our decorators transform cakes into edible art, carefully piping, sculpting, and placing each element. Whether it\'s delicate sugar flowers or intricate patterns, every detail matters.',
+    image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=800&q=80'
+  },
+  { 
+    step: 'Delivery', 
+    title: 'Bringing Joy to Your Door', 
+    description: 'Your cake is carefully packaged in special boxes that maintain freshness and protect the design. Our delivery team treats each cake like the precious cargo it is, ensuring it arrives perfect and on time for your celebration.',
+    image: 'https://images.unsplash.com/photo-1513396954618-c43b7c2e9d8a?w=800&q=80'
+  }
+]
+
+const signatureFlavors = [
+  { name: 'Rich Chocolate', color: '#4a2c2a', description: 'Indulge in layers of moist chocolate sponge infused with premium Belgian cocoa, filled with silky ganache and topped with chocolate shavings. Pure decadence in every bite.' },
+  { name: 'Vanilla Dream', color: '#f4e4c1', description: 'Experience the elegance of Madagascar vanilla - light, aromatic sponge layered with smooth vanilla buttercream. Simple yet sophisticated, this timeless classic never disappoints.' },
+  { name: 'Red Velvet Romance', color: '#8b1538', description: 'Fall in love with the perfect balance of cocoa and vanilla, creating that iconic red hue and velvety texture. Crowned with tangy cream cheese frosting for the ultimate indulgence.' },
+  { name: 'Tropical Mango', color: '#ffa500', description: 'Escape to paradise with fresh mango pulp folded into fluffy sponge and mango mousse. Bursting with tropical sunshine and natural sweetness in every layer.' },
+  { name: 'Coffee Delight', color: '#6f4e37', description: 'For coffee lovers - espresso-infused sponge paired with mocha buttercream. The perfect balance of bold coffee flavor and sweet indulgence that energizes and satisfies.' }
+]
+
 export default function Home() {
-  const { cartCount, cartTotal } = useCart()
+  const { cartCount, cartTotal, addToCart } = useCart()
   const [mounted, setMounted] = useState(false)
+  const { showToast } = useToast()
+  const { selectedProduct, isOpen, openQuickView, closeQuickView } = useQuickView()
 
   useScrollAnimation()
   useParallax()
@@ -52,6 +144,11 @@ export default function Home() {
     setMounted(true)
   }, [])
 
+  const handleAddToCart = (product: any) => {
+    addToCart(product)
+    showToast(`${product.name} added to cart! 🎂`, 'cake')
+  }
+
   return (
     <>
       <Head>
@@ -59,6 +156,8 @@ export default function Home() {
         <meta name="description" content="Order premium custom cakes, birthday cakes, and pastries. Same-day delivery available." />
       </Head>
 
+      <ScrollProgressBar />
+      <ScrollToTopButton />
       <Header />
 
       {/* Floating Cart Preview */}
@@ -106,7 +205,15 @@ export default function Home() {
               className="text-5xl md:text-7xl font-display font-bold text-white mb-6 animate-text-shimmer bg-gradient-to-r from-white via-pink-200 to-white bg-clip-text text-transparent bg-[length:200%_auto]"
             />
             <p className="text-xl md:text-2xl text-pink-100 mb-8 animate-fade-in-up animation-delay-200">
-              Premium custom cakes crafted with love and the finest ingredients
+              <TypewriterEffect 
+                words={[
+                  "Premium custom cakes crafted with love",
+                  "Fresh ingredients, unforgettable taste",
+                  "Making your celebrations sweeter",
+                  "Baked fresh daily with passion"
+                ]}
+                className="text-pink-100"
+              />
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
               <Link href="/products" className="btn-primary group relative overflow-hidden">
@@ -195,9 +302,9 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {bestSellers.map((cake, idx) => (
-              <Link key={cake.id} href={`/products/${cake.id}`} className="scroll-animate" style={{ animationDelay: `${idx * 100}ms` }}>
+              <div key={cake.id} className="scroll-animate" style={{ animationDelay: `${idx * 100}ms` }}>
                 <CardContainer className="inter-var w-full h-full" containerClassName="py-0 p-0">
-                  <CardBody className="bg-white/90 backdrop-blur-sm relative group/card border border-pink-200 w-full h-full rounded-2xl p-0 shadow-lg hover:shadow-2xl transition-all overflow-hidden">
+                  <CardBody className="bg-white/90 backdrop-blur-sm relative group/card border border-pink-200 w-full h-full rounded-2xl p-0 shadow-lg hover:shadow-2xl transition-all overflow-hidden glassmorphism hover-zoom">
                     {/* Bestseller badge */}
                     <div className="absolute top-4 -left-8 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-1 text-xs font-bold rotate-[-45deg] z-20 shadow-lg">
                       POPULAR
@@ -238,14 +345,17 @@ export default function Home() {
                       
                       {/* Quick add button */}
                       <CardItem translateZ="80" className="w-full">
-                        <button className="w-full bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white py-2.5 rounded-xl font-semibold shadow-md hover:shadow-xl transition-all transform hover:scale-[1.02]">
+                        <ParticleButton
+                          onClick={() => openQuickView(cake)}
+                          className="w-full bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white py-2.5 rounded-xl font-semibold shadow-md hover:shadow-xl transition-all transform hover:scale-[1.02]"
+                        >
                           Quick View
-                        </button>
+                        </ParticleButton>
                       </CardItem>
                     </div>
                   </CardBody>
                 </CardContainer>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -291,6 +401,178 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Our Journey - Immersive Timeline */}
+      <section className="section-padding bg-gradient-to-b from-white via-pink-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <StorySection>
+            <div className="text-center mb-4">
+              <div className="inline-block px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-bold mb-4">
+                ✨ OUR STORY
+              </div>
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                A Journey Baked with Love
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Every great cake has a story. Ours began with a simple dream: to bring joy to every celebration. 
+                Here's how we grew from a small kitchen to your trusted bakery.
+              </p>
+            </div>
+          </StorySection>
+          
+          <JourneyTimeline milestones={journeyMilestones} />
+        </div>
+      </section>
+
+      {/* Sensory Experience Section */}
+      <section className="section-padding bg-gradient-to-br from-pink-600 via-purple-600 to-pink-700 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl animate-blob"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <StorySection>
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-bold mb-4">
+                🎂 EXPERIENCE THE MAGIC
+              </div>
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
+                A Symphony for Your Senses
+              </h2>
+              <p className="text-xl text-pink-100 max-w-3xl mx-auto leading-relaxed">
+                A truly exceptional cake engages all your senses. Let us take you on a sensory journey 
+                that begins long before the first bite.
+              </p>
+            </div>
+          </StorySection>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {sensoryExperiences.map((exp, idx) => (
+              <StorySection key={exp.sense} delay={idx * 0.1}>
+                <SensoryCard {...exp} />
+              </StorySection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section with Animated Counters */}
+      <section className="section-padding bg-gradient-to-br from-pink-50 via-white to-purple-50">
+        <div className="max-w-7xl mx-auto">
+          <StorySection>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                Our Sweet Success Story
+              </h2>
+              <p className="text-gray-700 text-lg">Numbers that speak louder than words</p>
+            </div>
+          </StorySection>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            <AnimatedStat value={15000} suffix="+" label="Happy Customers" icon={Users} delay={0} />
+            <AnimatedStat value={25000} suffix="+" label="Cakes Created" icon={Cake} delay={0.1} />
+            <AnimatedStat value={4.9} suffix="/5" label="Average Rating" icon={Star} delay={0.2} />
+            <AnimatedStat value={100} suffix="%" label="Fresh Daily" icon={Heart} delay={0.3} />
+          </div>
+          
+          <StatsSection />
+        </div>
+      </section>
+
+      {/* Customer Stories - Emotional Connection */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto">
+          <StorySection>
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-bold mb-4">
+                ❤️ REAL STORIES
+              </div>
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                Celebrations We've Made Special
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Behind every cake is a celebration, and behind every celebration is a story. 
+                Here are just a few of the thousands of moments we've been honored to be part of.
+              </p>
+            </div>
+          </StorySection>
+          
+          <div className="space-y-12">
+            {customerStories.map((story, idx) => (
+              <StorySection key={story.name} delay={idx * 0.2}>
+                <CustomerStory {...story} />
+              </StorySection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Behind the Scenes - Building Trust */}
+      <section className="section-padding bg-gradient-to-b from-white via-pink-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <StorySection>
+            <div className="text-center mb-20">
+              <div className="inline-block px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-bold mb-4">
+                🔍 BEHIND THE SCENES
+              </div>
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                How We Craft Your Perfect Cake
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Ever wondered what goes into making a TheCakeTime masterpiece? 
+                Let us take you behind the scenes of our baking process.
+              </p>
+            </div>
+          </StorySection>
+          
+          {bakingProcess.map((process, idx) => (
+            <BehindTheScenes key={process.step} {...process} number={idx + 1} />
+          ))}
+        </div>
+      </section>
+
+      {/* Interactive Flavor Journey */}
+      <section className="section-padding bg-gradient-to-br from-purple-100 via-pink-100 to-orange-100">
+        <div className="max-w-6xl mx-auto">
+          <StorySection>
+            <div className="text-center mb-12">
+              <div className="inline-block px-4 py-2 bg-white text-pink-600 rounded-full text-sm font-bold mb-4">
+                🍰 FLAVOR DISCOVERY
+              </div>
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                Discover Your Perfect Flavor
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Each flavor tells a different story. Click to explore the unique character and taste profile 
+                of our signature creations.
+              </p>
+            </div>
+            
+            <FlavorJourney flavors={signatureFlavors} />
+          </StorySection>
+        </div>
+      </section>
+
+      {/* Image Comparison Section */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 scroll-animate">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+              Our Transformation Magic
+            </h2>
+            <p className="text-gray-700 text-lg">See how we turn dreams into delicious reality</p>
+          </div>
+          <div className="max-w-4xl mx-auto scroll-animate">
+            <ImageComparisonSlider
+              beforeImage="/images/products/vanilla-dream.jpg"
+              afterImage="/images/products/chocolate-truffle-delight.jpg"
+              beforeLabel="Concept"
+              afterLabel="Final Creation"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Featured Blog with Following Pointer */}
       <section className="section-padding bg-gradient-to-b from-white to-pink-50 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -325,6 +607,21 @@ export default function Home() {
           {/* Infinite Moving Cards Component */}
           <div className="scroll-animate">
             <InfiniteMovingCardsDemo />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section-padding bg-gradient-to-b from-white to-pink-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 scroll-animate">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-700 text-lg">Everything you need to know about our cakes and services</p>
+          </div>
+          <div className="scroll-animate">
+            <FAQAccordion />
           </div>
         </div>
       </section>
@@ -386,6 +683,14 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {/* Quick View Modal */}
+      <QuickViewModal
+        product={selectedProduct}
+        isOpen={isOpen}
+        onClose={closeQuickView}
+        onAddToCart={handleAddToCart}
+      />
     </>
   )
 }

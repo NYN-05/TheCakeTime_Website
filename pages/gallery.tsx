@@ -8,18 +8,18 @@ import { useScrollAnimation, FloatingCart } from '../components/UniqueEffects'
 import { useCart } from '../contexts/CartContext'
 
 const galleryImages = [
-  { id: 1, url: 'https://via.placeholder.com/400x500/4a2c2a/ffffff?text=Birthday+Cake+1', category: 'birthday', title: 'Birthday Celebration' },
-  { id: 2, url: 'https://via.placeholder.com/400x300/8b1538/ffffff?text=Wedding+Cake', category: 'wedding', title: 'Wedding Masterpiece' },
-  { id: 3, url: 'https://via.placeholder.com/400x400/f5f5dc/000000?text=Designer+1', category: 'designer', title: 'Designer Creation' },
-  { id: 4, url: 'https://via.placeholder.com/400x450/2c1810/ffffff?text=Kids+1', category: 'kids', title: 'Kids Special' },
-  { id: 5, url: 'https://via.placeholder.com/400x350/d2691e/ffffff?text=Anniversary', category: 'anniversary', title: 'Anniversary Delight' },
-  { id: 6, url: 'https://via.placeholder.com/400x500/ff69b4/ffffff?text=Birthday+2', category: 'birthday', title: 'Birthday Joy' },
-  { id: 7, url: 'https://via.placeholder.com/400x400/ffd700/000000?text=Designer+2', category: 'designer', title: 'Elegant Design' },
-  { id: 8, url: 'https://via.placeholder.com/400x450/ffb347/000000?text=Kids+2', category: 'kids', title: 'Cartoon Character' },
-  { id: 9, url: 'https://via.placeholder.com/400x300/dc3b27/ffffff?text=Wedding+2', category: 'wedding', title: 'Tiered Beauty' },
-  { id: 10, url: 'https://via.placeholder.com/400x500/ca8a04/ffffff?text=Birthday+3', category: 'birthday', title: 'Celebration Time' },
-  { id: 11, url: 'https://via.placeholder.com/400x400/a16207/ffffff?text=Designer+3', category: 'designer', title: 'Artistic Touch' },
-  { id: 12, url: 'https://via.placeholder.com/400x350/854d0e/ffffff?text=Anniversary+2', category: 'anniversary', title: 'Love Celebration' },
+  { id: 1, url: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=800&q=80', category: 'birthday', title: 'Birthday Celebration' },
+  { id: 2, url: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=800&q=80', category: 'wedding', title: 'Wedding Masterpiece' },
+  { id: 3, url: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=800&q=80', category: 'designer', title: 'Designer Creation' },
+  { id: 4, url: 'https://images.unsplash.com/photo-1562440499-64c9a4a4d506?w=800&q=80', category: 'kids', title: 'Kids Special' },
+  { id: 5, url: 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80', category: 'anniversary', title: 'Anniversary Delight' },
+  { id: 6, url: 'https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=800&q=80', category: 'birthday', title: 'Birthday Joy' },
+  { id: 7, url: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80', category: 'designer', title: 'Elegant Design' },
+  { id: 8, url: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=800&q=80', category: 'kids', title: 'Cartoon Character' },
+  { id: 9, url: 'https://images.unsplash.com/photo-1588195538326-c5b1e5b80857?w=800&q=80', category: 'wedding', title: 'Tiered Beauty' },
+  { id: 10, url: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=800&q=80', category: 'birthday', title: 'Celebration Time' },
+  { id: 11, url: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=800&q=80', category: 'designer', title: 'Artistic Touch' },
+  { id: 12, url: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800&q=80', category: 'anniversary', title: 'Love Celebration' },
 ]
 
 const categories = ['all', 'birthday', 'wedding', 'designer', 'kids', 'anniversary']

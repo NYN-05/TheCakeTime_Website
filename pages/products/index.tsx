@@ -10,14 +10,14 @@ import { useScrollAnimation, FloatingCart } from '../../components/UniqueEffects
 import { useCart } from '../../contexts/CartContext'
 
 const products = [
-  { id: 1, name: 'Chocolate Truffle Delight', price: 899, category: 'birthday', flavor: 'chocolate', weight: '1kg', occasion: 'birthday', rating: 4.8, image: '/images/products/chocolate-truffle-delight.jpg', eggless: false },
-  { id: 2, name: 'Red Velvet Romance', price: 799, category: 'birthday', flavor: 'red-velvet', weight: '1kg', occasion: 'anniversary', rating: 4.9, image: '/images/products/red-velvet-romance.jpg', eggless: false },
-  { id: 3, name: 'Vanilla Dream', price: 699, category: 'birthday', flavor: 'vanilla', weight: '500g', occasion: 'birthday', rating: 4.7, image: '/images/products/vanilla-dream.jpg', eggless: true },
-  { id: 4, name: 'Black Forest Classic', price: 849, category: 'birthday', flavor: 'chocolate', weight: '1kg', occasion: 'birthday', rating: 4.8, image: '/images/products/black-forest-classic.jpg', eggless: false },
-  { id: 5, name: 'Butterscotch Bliss', price: 749, category: 'birthday', flavor: 'butterscotch', weight: '1kg', occasion: 'birthday', rating: 4.6, image: '/images/products/butterscotch-bliss.jpg', eggless: true },
-  { id: 6, name: 'Strawberry Paradise', price: 799, category: 'birthday', flavor: 'strawberry', weight: '1kg', occasion: 'birthday', rating: 4.7, image: '/images/products/strawberry-paradise.jpg', eggless: false },
-  { id: 7, name: 'Pineapple Delight', price: 699, category: 'birthday', flavor: 'pineapple', weight: '1kg', occasion: 'birthday', rating: 4.5, image: '/images/products/pineapple-delight.jpg', eggless: true },
-  { id: 8, name: 'Mango Magic', price: 849, category: 'seasonal', flavor: 'mango', weight: '1kg', occasion: 'celebration', rating: 4.9, image: '/images/products/mango-magic.jpg', eggless: true },
+  { id: 1, name: 'Chocolate Truffle Delight', price: 899, category: 'birthday', flavor: 'chocolate', weight: '1kg', occasion: 'birthday', rating: 4.8, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80', eggless: false },
+  { id: 2, name: 'Red Velvet Romance', price: 799, category: 'birthday', flavor: 'red-velvet', weight: '1kg', occasion: 'anniversary', rating: 4.9, image: 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80', eggless: false },
+  { id: 3, name: 'Vanilla Dream', price: 699, category: 'birthday', flavor: 'vanilla', weight: '500g', occasion: 'birthday', rating: 4.7, image: 'https://images.unsplash.com/photo-1588195538326-c5b1e5b80857?w=800&q=80', eggless: true },
+  { id: 4, name: 'Black Forest Classic', price: 849, category: 'birthday', flavor: 'chocolate', weight: '1kg', occasion: 'birthday', rating: 4.8, image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=800&q=80', eggless: false },
+  { id: 5, name: 'Butterscotch Bliss', price: 749, category: 'birthday', flavor: 'butterscotch', weight: '1kg', occasion: 'birthday', rating: 4.6, image: 'https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=800&q=80', eggless: true },
+  { id: 6, name: 'Strawberry Paradise', price: 799, category: 'birthday', flavor: 'strawberry', weight: '1kg', occasion: 'birthday', rating: 4.7, image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80', eggless: false },
+  { id: 7, name: 'Pineapple Delight', price: 699, category: 'birthday', flavor: 'pineapple', weight: '1kg', occasion: 'birthday', rating: 4.5, image: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=800&q=80', eggless: true },
+  { id: 8, name: 'Mango Magic', price: 849, category: 'seasonal', flavor: 'mango', weight: '1kg', occasion: 'celebration', rating: 4.9, image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800&q=80', eggless: true },
 ]
 
 export default function Products() {

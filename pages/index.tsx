@@ -8,6 +8,10 @@ import ProductImage from '../components/ProductImage'
 import { useScrollAnimation, useParallax, FloatingCart } from '../components/UniqueEffects'
 import { useCart } from '../contexts/CartContext'
 import { useEffect, useState } from 'react'
+import { InfiniteMovingCardsDemo } from '../components/InfiniteMovingCardsDemo'
+import { CardContainer, CardBody, CardItem } from '../components/ui/3d-card'
+import WobbleCardDemo from '../components/wobble-card-demo'
+import { InlineTextReveal } from '../components/ui/inline-text-reveal'
 
 const categories = [
   { name: 'Birthday Cakes', image: '/images/categories/birthday-cakes.jpg', link: '/products?category=birthday' },
@@ -95,9 +99,11 @@ export default function Home() {
                 ✨ Premium Handcrafted Cakes
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 animate-text-shimmer bg-gradient-to-r from-white via-pink-200 to-white bg-clip-text text-transparent bg-[length:200%_auto]">
-              Celebrate Every Moment with TheCakeTime
-            </h1>
+            <InlineTextReveal
+              beforeText="Celebrate Every Moment with"
+              revealText="TheCakeTime"
+              className="text-5xl md:text-7xl font-display font-bold text-white mb-6 animate-text-shimmer bg-gradient-to-r from-white via-pink-200 to-white bg-clip-text text-transparent bg-[length:200%_auto]"
+            />
             <p className="text-xl md:text-2xl text-pink-100 mb-8 animate-fade-in-up animation-delay-200">
               Premium custom cakes crafted with love and the finest ingredients
             </p>
@@ -152,6 +158,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Choose Us - Wobble Cards */}
+      <section className="section-padding bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 scroll-animate">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+              Why Choose TheCakeTime
+            </h2>
+            <p className="text-gray-600 text-lg">Experience excellence in every bite</p>
+          </div>
+          <div className="scroll-animate">
+            <WobbleCardDemo />
+          </div>
+        </div>
+      </section>
+
       {/* Best Sellers with Unique Card Design */}
       <section className="section-padding bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 relative overflow-hidden">
         {/* Background decoration */}
@@ -171,47 +192,58 @@ export default function Home() {
               <ChevronRight className="ml-1 group-hover:translate-x-1 transition-transform" size={20} />
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {bestSellers.map((cake, idx) => (
-              <Link key={cake.id} href={`/products/${cake.id}`} className="group scroll-animate" style={{ animationDelay: `${idx * 100}ms` }}>
-                <div className="card overflow-hidden relative hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 bg-white/80 backdrop-blur-sm">
-                  {/* Bestseller badge */}
-                  <div className="absolute top-4 -left-8 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-1 text-xs font-bold rotate-[-45deg] z-10 shadow-lg">
-                    POPULAR
-                  </div>
-                  
-                  <div className="relative h-64 overflow-hidden">
-                    <ProductImage 
-                      src={cake.image} 
-                      alt={cake.name} 
-                      fill 
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    {/* Shine effect on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  </div>
-                  
-                  <div className="p-5 relative">
-                    <h3 className="text-lg font-bold mb-3 group-hover:text-pink-600 transition-colors">{cake.name}</h3>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-xs text-gray-500 mb-1">Starting from</div>
-                        <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text text-transparent">
-                          ₹{cake.price}
-                        </span>
-                      </div>
-                      <div className="flex items-center bg-yellow-50 px-3 py-1 rounded-full">
-                        <Star size={16} className="text-yellow-500 fill-yellow-500" />
-                        <span className="ml-1 text-sm font-bold text-yellow-700">{cake.rating}</span>
-                      </div>
+              <Link key={cake.id} href={`/products/${cake.id}`} className="scroll-animate" style={{ animationDelay: `${idx * 100}ms` }}>
+                <CardContainer className="inter-var w-full h-full" containerClassName="py-0 p-0">
+                  <CardBody className="bg-white/90 backdrop-blur-sm relative group/card border border-pink-200 w-full h-full rounded-2xl p-0 shadow-lg hover:shadow-2xl transition-all overflow-hidden">
+                    {/* Bestseller badge */}
+                    <div className="absolute top-4 -left-8 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-1 text-xs font-bold rotate-[-45deg] z-20 shadow-lg">
+                      POPULAR
                     </div>
                     
-                    {/* Quick add button appears on hover */}
-                    <button className="mt-4 w-full bg-gradient-to-r from-pink-600 to-pink-700 text-white py-2 rounded-lg font-semibold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:shadow-lg">
-                      Quick View
-                    </button>
-                  </div>
-                </div>
+                    {/* Gradient hover effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 to-purple-500/0 group-hover/card:from-pink-500/10 group-hover/card:to-purple-500/10 transition-all duration-300 rounded-2xl"></div>
+                    
+                    <CardItem translateZ="100" className="w-full">
+                      <div className="relative h-56 overflow-hidden rounded-t-2xl">
+                        <ProductImage 
+                          src={cake.image} 
+                          alt={cake.name} 
+                          fill 
+                          className="object-cover group-hover/card:scale-110 transition-transform duration-500"
+                        />
+                        {/* Shine effect on hover */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-700"></div>
+                      </div>
+                    </CardItem>
+                    
+                    <div className="p-5 relative z-10">
+                      <CardItem translateZ="50" className="text-lg font-bold mb-2 text-gray-900 group-hover/card:text-pink-600 transition-colors">
+                        {cake.name}
+                      </CardItem>
+                      <CardItem translateZ="60" className="flex items-center justify-between mb-3">
+                        <div>
+                          <div className="text-xs text-gray-500 mb-1">Starting from</div>
+                          <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text text-transparent">
+                            ₹{cake.price}
+                          </span>
+                        </div>
+                        <div className="flex items-center bg-gradient-to-br from-yellow-50 to-orange-50 px-3 py-1.5 rounded-full shadow-sm">
+                          <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                          <span className="ml-1 text-sm font-bold text-yellow-700">{cake.rating}</span>
+                        </div>
+                      </CardItem>
+                      
+                      {/* Quick add button */}
+                      <CardItem translateZ="80" className="w-full">
+                        <button className="w-full bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white py-2.5 rounded-xl font-semibold shadow-md hover:shadow-xl transition-all transform hover:scale-[1.02]">
+                          Quick View
+                        </button>
+                      </CardItem>
+                    </div>
+                  </CardBody>
+                </CardContainer>
               </Link>
             ))}
           </div>
@@ -272,47 +304,10 @@ export default function Home() {
             </h2>
             <p className="text-gray-700 text-lg">Real stories from real people who love our cakes</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, idx) => (
-              <div 
-                key={idx} 
-                className="card p-8 scroll-animate hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/90 backdrop-blur-sm relative group overflow-hidden"
-                style={{ animationDelay: `${idx * 150}ms` }}
-              >
-                {/* Quote mark decoration */}
-                <div className="absolute top-4 right-4 text-8xl text-pink-100 font-serif leading-none">&quot;</div>
-                
-                {/* Stars with animation */}
-                <div className="flex mb-6 relative z-10">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      size={22} 
-                      className="text-yellow-400 fill-yellow-400 hover:scale-125 transition-transform cursor-pointer"
-                      style={{ animationDelay: `${i * 100}ms` }}
-                    />
-                  ))}
-                </div>
-                
-                <p className="text-gray-700 mb-6 italic text-lg leading-relaxed relative z-10">
-                  &quot;{testimonial.text}&quot;
-                </p>
-                
-                <div className="flex items-center relative z-10">
-                  {/* Avatar placeholder */}
-                  <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-3 shadow-lg">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900">{testimonial.name}</p>
-                    <p className="text-sm text-gray-500">Verified Customer</p>
-                  </div>
-                </div>
-                
-                {/* Hover effect gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 to-purple-500/0 group-hover:from-pink-500/10 group-hover:to-purple-500/10 transition-all duration-300"></div>
-              </div>
-            ))}
+          
+          {/* Infinite Moving Cards Component */}
+          <div className="scroll-animate">
+            <InfiniteMovingCardsDemo />
           </div>
         </div>
       </section>

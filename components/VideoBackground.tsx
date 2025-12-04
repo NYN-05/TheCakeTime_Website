@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface VideoBackgroundProps {
   videoUrl: string
@@ -70,5 +70,3 @@ export function AnimatedImageGallery({ images, interval = 4000 }: AnimatedImageG
     </div>
   )
 }
-
-import { useState } from 'react'

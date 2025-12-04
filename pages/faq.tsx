@@ -108,8 +108,13 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<string | null>(null)
-  const { cart } = useCart()
+  const { cart, cartCount, cartTotal } = useCart()
+  const [mounted, setMounted] = useState(false)
   useScrollAnimation()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const toggleFAQ = (category: string, index: number) => {
     const key = `${category}-${index}`
@@ -197,7 +202,7 @@ export default function FAQ() {
         </div>
       </div>
 
-      <FloatingCart cart={cart} />
+      {mounted && <FloatingCart count={cartCount} total={cartTotal} />}
       <Footer />
     </>
   )

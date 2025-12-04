@@ -35,13 +35,13 @@ const categories = [
   { name: 'Birthday Cakes', image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=800&q=80', link: '/products?category=birthday' },
   { name: 'Custom Cakes', image: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=800&q=80', link: '/custom-order' },
   { name: 'Pastries', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80', link: '/products?category=pastries' },
-  { name: 'Seasonal Specials', image: 'https://images.unsplash.com/photo-156732737-3d2b85eb5b5d?w=800&q=80', link: '/products?category=seasonal' },
+  { name: 'Seasonal Specials', image: 'https://images.unsplash.com/photo-1602351447937-745cb720612f?w=800&q=80', link: '/products?category=seasonal' },
 ]
 
 const bestSellers = [
   { id: 1, name: 'Chocolate Truffle Delight', price: 899, rating: 4.8, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80' },
   { id: 2, name: 'Red Velvet Romance', price: 799, rating: 4.9, image: 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80' },
-  { id: 3, name: 'Vanilla Dream', price: 699, rating: 4.7, image: 'https://images.unsplash.com/photo-1588195538326-c5b1e5b80857?w=800&q=80' },
+  { id: 3, name: 'Vanilla Dream', price: 699, rating: 4.7, image: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=800&q=80' },
   { id: 4, name: 'Black Forest Classic', price: 849, rating: 4.8, image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=800&q=80' },
 ]
 

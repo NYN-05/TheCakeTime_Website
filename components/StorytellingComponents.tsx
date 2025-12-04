@@ -19,6 +19,41 @@ export const StorySection = ({ children, delay = 0 }: { children: React.ReactNod
   )
 }
 
+// Milestone Item Component
+const MilestoneItem = ({ milestone, idx, isEven }: any) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -50 : 50 }}
+      transition={{ duration: 0.6, delay: idx * 0.1 }}
+      className={`relative flex items-center mb-16 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
+    >
+      {/* Content card */}
+      <div className={`w-5/12 ${isEven ? 'text-right pr-12' : 'text-left pl-12'}`}>
+        <motion.div 
+          className="bg-white p-6 rounded-2xl shadow-xl border-2 border-pink-200 hover:shadow-2xl transition-all group cursor-pointer"
+          whileHover={{ scale: 1.05, rotate: isEven ? -2 : 2 }}
+        >
+          {milestone.icon && <milestone.icon className="text-pink-500 mb-2" size={24} />}
+          <p className="text-pink-600 font-bold text-sm mb-2">{milestone.year}</p>
+          <h3 className="text-xl font-bold mb-2 text-gray-800">{milestone.title}</h3>
+          <p className="text-gray-600">{milestone.description}</p>
+        </motion.div>
+      </div>
+
+      {/* Timeline dot */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+
+      {/* Empty space for alternating layout */}
+      <div className="w-5/12"></div>
+    </motion.div>
+  )
+}
+
 // Interactive timeline with scroll progress
 export const JourneyTimeline = ({ milestones }: { milestones: Array<{ year: string, title: string, description: string, icon?: any }> }) => {
   const containerRef = useRef(null)
@@ -41,51 +76,14 @@ export const JourneyTimeline = ({ milestones }: { milestones: Array<{ year: stri
       
       {milestones.map((milestone, idx) => {
         const isEven = idx % 2 === 0
-        const ref = useRef(null)
-        const isInView = useInView(ref, { once: true, margin: "-100px" })
         
         return (
-          <motion.div
+          <MilestoneItem
             key={milestone.year}
-            ref={ref}
-            initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -50 : 50 }}
-            transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className={`relative flex items-center mb-16 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
-          >
-            {/* Content card */}
-            <div className={`w-5/12 ${isEven ? 'text-right pr-12' : 'text-left pl-12'}`}>
-              <motion.div 
-                className="bg-white p-6 rounded-2xl shadow-xl border-2 border-pink-200 hover:shadow-2xl transition-all group cursor-pointer"
-                whileHover={{ scale: 1.05, rotate: isEven ? -2 : 2 }}
-              >
-                <div className="flex items-center gap-2 mb-2" style={{ justifyContent: isEven ? 'flex-end' : 'flex-start' }}>
-                  {milestone.icon && <milestone.icon className="text-pink-500" size={20} />}
-                  <div className="text-sm font-bold text-pink-600 bg-pink-100 px-3 py-1 rounded-full">
-                    {milestone.year}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">
-                  {milestone.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {milestone.description}
-                </p>
-              </motion.div>
-            </div>
-            
-            {/* Center dot */}
-            <motion.div 
-              className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 border-4 border-white shadow-lg z-10"
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : { scale: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.1 + 0.3 }}
-              whileHover={{ scale: 1.5 }}
-            />
-            
-            {/* Empty space on other side */}
-            <div className="w-5/12" />
-          </motion.div>
+            milestone={milestone}
+            idx={idx}
+            isEven={isEven}
+          />
         )
       })}
     </div>

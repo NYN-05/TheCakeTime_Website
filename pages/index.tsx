@@ -12,6 +12,7 @@ import { InfiniteMovingCardsDemo } from '../components/InfiniteMovingCardsDemo'
 import { CardContainer, CardBody, CardItem } from '../components/ui/3d-card'
 import WobbleCardDemo from '../components/wobble-card-demo'
 import { InlineTextReveal } from '../components/ui/inline-text-reveal'
+import { FollowingPointerDemo } from '../components/FollowingPointerDemo'
 
 const categories = [
   { name: 'Birthday Cakes', image: '/images/categories/birthday-cakes.jpg', link: '/products?category=birthday' },
@@ -286,6 +287,22 @@ export default function Home() {
                 <div className="mt-4 h-1 w-0 group-hover:w-16 bg-gradient-to-r from-pink-500 to-purple-600 mx-auto transition-all duration-300 rounded-full"></div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Blog with Following Pointer */}
+      <section className="section-padding bg-gradient-to-b from-white to-pink-50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 scroll-animate">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+              Featured Article
+            </h2>
+            <p className="text-gray-700 text-lg">Explore our latest insights on cake artistry and baking tips</p>
+          </div>
+          
+          <div className="flex justify-center scroll-animate">
+            <FollowingPointerDemo />
           </div>
         </div>
       </section>

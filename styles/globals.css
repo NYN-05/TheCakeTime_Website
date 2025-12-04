@@ -2,33 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Cursor Styles */
-.custom-cursor {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ec4899, #a855f7);
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.2s ease;
-  mix-blend-mode: difference;
+/* Global Cursor Hide Default */
+* {
+  cursor: none !important;
 }
 
-.custom-cursor-follower {
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(236, 72, 153, 0.5);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform 0.15s ease;
-}
-
-.custom-cursor.cursor-hover,
-.custom-cursor-follower.cursor-hover {
-  transform: scale(1.5);
+a, button, input, textarea, select {
+  cursor: none !important;
 }
 
 /* Scroll Animations */

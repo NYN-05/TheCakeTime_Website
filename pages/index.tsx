@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Cake, Heart, Truck, Award, Star, ChevronRight, Sparkles } from 'lucide-react'
+import { Cake, Heart, Truck, Award, Star, ChevronRight, Sparkles, Calendar } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ProductImage from '../components/ProductImage'
@@ -205,15 +205,18 @@ export default function Home() {
               className="text-5xl md:text-7xl font-display font-bold text-white mb-6 animate-text-shimmer bg-gradient-to-r from-white via-pink-200 to-white bg-clip-text text-transparent bg-[length:200%_auto]"
             />
             <p className="text-xl md:text-2xl text-pink-100 mb-8 animate-fade-in-up animation-delay-200">
-              <TypewriterEffect 
-                words={[
-                  "Premium custom cakes crafted with love",
-                  "Fresh ingredients, unforgettable taste",
-                  "Making your celebrations sweeter",
-                  "Baked fresh daily with passion"
-                ]}
-                className="text-pink-100"
-              />
+              {!mounted && "Premium custom cakes crafted with love"}
+              {mounted && (
+                <TypewriterEffect 
+                  words={[
+                    "Premium custom cakes crafted with love",
+                    "Fresh ingredients, unforgettable taste",
+                    "Making your celebrations sweeter",
+                    "Baked fresh daily with passion"
+                  ]}
+                  className="text-pink-100"
+                />
+              )}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
               <Link href="/products" className="btn-primary group relative overflow-hidden">
@@ -277,6 +280,113 @@ export default function Home() {
           </div>
           <div className="scroll-animate">
             <WobbleCardDemo />
+          </div>
+        </div>
+      </section>
+
+      {/* 5 Pitch-Winning Features */}
+      <section className="section-padding bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16 scroll-animate">
+            <h2 className="text-5xl md:text-6xl font-display font-bold mb-4">
+              Premium Features That Set Us Apart
+            </h2>
+            <p className="text-xl text-pink-100">Experience the future of cake ordering</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Feature 1: Cake Customizer */}
+            <Link href="/customizer" className="group">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                  <Cake className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3">Interactive Cake Customizer</h3>
+                <p className="text-pink-100 mb-4">Design your dream cake in 3D with real-time preview. Choose tiers, flavors, and decorations.</p>
+                <div className="flex items-center text-pink-300 font-semibold group-hover:text-white transition-colors">
+                  Try It Now <ChevronRight className="ml-1 group-hover:translate-x-2 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Feature 2: Live Order Tracking */}
+            <Link href="/track-order" className="group">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                  <Truck className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3">Live Order Tracking</h3>
+                <p className="text-pink-100 mb-4">Track your cake from oven to doorstep. Real-time updates at every stage.</p>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/30 rounded-full text-sm font-bold mb-4">
+                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                  99.2% On-Time Delivery
+                </div>
+                <div className="flex items-center text-pink-300 font-semibold group-hover:text-white transition-colors">
+                  Track Demo <ChevronRight className="ml-1 group-hover:translate-x-2 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Feature 3: Before/After Gallery */}
+            <Link href="/custom-orders-gallery" className="group">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                  <Sparkles className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3">Vision to Reality Gallery</h3>
+                <p className="text-pink-100 mb-4">See 500+ customer sketches transformed into stunning cakes. Proof of our perfection.</p>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/30 rounded-full text-sm font-bold mb-4">
+                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  99.8% Accuracy Rate
+                </div>
+                <div className="flex items-center text-pink-300 font-semibold group-hover:text-white transition-colors">
+                  View Gallery <ChevronRight className="ml-1 group-hover:translate-x-2 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Feature 4: Smart Delivery Slots */}
+            <Link href="/delivery" className="group">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                  <Calendar className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3">Smart Delivery Booking</h3>
+                <p className="text-pink-100 mb-4">Choose your exact delivery time. See available slots in real-time with priority options.</p>
+                <div className="flex items-center text-pink-300 font-semibold group-hover:text-white transition-colors">
+                  Book Slot <ChevronRight className="ml-1 group-hover:translate-x-2 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Feature 5: AI Recommendations */}
+            <Link href="/find-cake" className="group">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                  <Sparkles className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3">AI-Powered Recommendations</h3>
+                <p className="text-pink-100 mb-4">Answer 3 questions, get the perfect cake. Smart suggestions based on occasion, age & guests.</p>
+                <div className="flex items-center text-pink-300 font-semibold group-hover:text-white transition-colors">
+                  Find My Cake <ChevronRight className="ml-1 group-hover:translate-x-2 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* CTA Card */}
+            <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-lg rounded-2xl p-8 border-2 border-white/30 flex flex-col justify-center items-center text-center">
+              <h3 className="text-3xl font-bold mb-4">Ready to Experience?</h3>
+              <p className="text-pink-100 mb-6">Start designing your perfect cake today</p>
+              <Link href="/customizer" className="px-8 py-4 bg-white text-pink-600 rounded-full font-bold hover:shadow-2xl hover:scale-105 transition-all">
+                Get Started →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -468,14 +578,16 @@ export default function Home() {
             </div>
           </StorySection>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-            <AnimatedStat value={15000} suffix="+" label="Happy Customers" icon={Users} delay={0} />
-            <AnimatedStat value={25000} suffix="+" label="Cakes Created" icon={Cake} delay={0.1} />
-            <AnimatedStat value={4.9} suffix="/5" label="Average Rating" icon={Star} delay={0.2} />
-            <AnimatedStat value={100} suffix="%" label="Fresh Daily" icon={Heart} delay={0.3} />
-          </div>
+          {mounted && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+              <AnimatedStat value={15000} suffix="+" label="Happy Customers" icon={Users} delay={0} />
+              <AnimatedStat value={25000} suffix="+" label="Cakes Created" icon={Cake} delay={0.1} />
+              <AnimatedStat value={4.9} suffix="/5" label="Average Rating" icon={Star} delay={0.2} />
+              <AnimatedStat value={100} suffix="%" label="Fresh Daily" icon={Heart} delay={0.3} />
+            </div>
+          )}
           
-          <StatsSection />
+          {mounted && <StatsSection />}
         </div>
       </section>
 
@@ -583,9 +695,11 @@ export default function Home() {
             <p className="text-gray-700 text-lg">Explore our latest insights on cake artistry and baking tips</p>
           </div>
           
-          <div className="flex justify-center scroll-animate">
-            <FollowingPointerDemo />
-          </div>
+          {mounted && (
+            <div className="flex justify-center scroll-animate">
+              <FollowingPointerDemo />
+            </div>
+          )}
         </div>
       </section>
 
@@ -605,9 +719,11 @@ export default function Home() {
           </div>
           
           {/* Infinite Moving Cards Component */}
-          <div className="scroll-animate">
-            <InfiniteMovingCardsDemo />
-          </div>
+          {mounted && (
+            <div className="scroll-animate">
+              <InfiniteMovingCardsDemo />
+            </div>
+          )}
         </div>
       </section>
 

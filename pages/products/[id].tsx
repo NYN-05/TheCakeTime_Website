@@ -11,16 +11,16 @@ import { useCart } from '../../contexts/CartContext'
 import { useScrollAnimation, FloatingCart } from '../../components/UniqueEffects'
 
 const products = [
-  { id: 1, name: 'Chocolate Truffle Delight', price: 899, description: 'Rich chocolate cake layered with smooth truffle cream and chocolate shavings', ingredients: 'Flour, Chocolate, Cream, Sugar, Eggs, Butter', category: 'birthday', flavor: 'chocolate', occasion: 'birthday', rating: 4.8, reviews: 124, image: '/images/products/chocolate-truffle-delight.jpg', eggless: false },
-  { id: 2, name: 'Red Velvet Romance', price: 799, description: 'Classic red velvet cake with cream cheese frosting', ingredients: 'Flour, Cocoa, Cream Cheese, Sugar, Eggs, Butter', category: 'birthday', flavor: 'red-velvet', occasion: 'anniversary', rating: 4.9, reviews: 156, image: '/images/products/red-velvet-romance.jpg', eggless: false },
-  { id: 3, name: 'Vanilla Dream', price: 699, description: 'Light and fluffy vanilla sponge with vanilla buttercream', ingredients: 'Flour, Vanilla, Butter, Sugar, Milk', category: 'birthday', flavor: 'vanilla', occasion: 'birthday', rating: 4.7, reviews: 98, image: '/images/products/vanilla-dream.jpg', eggless: true },
-  { id: 4, name: 'Black Forest Classic', price: 849, description: 'Traditional Black Forest cake with cherries and chocolate', ingredients: 'Chocolate, Cherries, Cream, Flour, Sugar, Eggs', category: 'birthday', flavor: 'chocolate', occasion: 'birthday', rating: 4.8, reviews: 187, image: '/images/products/black-forest-classic.jpg', eggless: false },
+  { id: 1, name: 'Chocolate Truffle Delight', price: 899, description: 'Rich chocolate cake layered with smooth truffle cream and chocolate shavings', ingredients: 'Flour, Chocolate, Cream, Sugar, Eggs, Butter', category: 'birthday', flavor: 'chocolate', occasion: 'birthday', rating: 4.8, reviews: 124, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80', eggless: false },
+  { id: 2, name: 'Red Velvet Romance', price: 799, description: 'Classic red velvet cake with cream cheese frosting', ingredients: 'Flour, Cocoa, Cream Cheese, Sugar, Eggs, Butter', category: 'birthday', flavor: 'red-velvet', occasion: 'anniversary', rating: 4.9, reviews: 156, image: 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80', eggless: false },
+  { id: 3, name: 'Vanilla Dream', price: 699, description: 'Light and fluffy vanilla sponge with vanilla buttercream', ingredients: 'Flour, Vanilla, Butter, Sugar, Milk', category: 'birthday', flavor: 'vanilla', occasion: 'birthday', rating: 4.7, reviews: 98, image: 'https://images.unsplash.com/photo-1588195538326-c5b1e5b80857?w=800&q=80', eggless: true },
+  { id: 4, name: 'Black Forest Classic', price: 849, description: 'Traditional Black Forest cake with cherries and chocolate', ingredients: 'Chocolate, Cherries, Cream, Flour, Sugar, Eggs', category: 'birthday', flavor: 'chocolate', occasion: 'birthday', rating: 4.8, reviews: 187, image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=800&q=80', eggless: false },
 ]
 
 const relatedProducts = [
-  { id: 5, name: 'Butterscotch Bliss', price: 749, rating: 4.6, image: '/images/products/butterscotch-bliss.jpg' },
-  { id: 6, name: 'Strawberry Paradise', price: 799, rating: 4.7, image: '/images/products/strawberry-paradise.jpg' },
-  { id: 7, name: 'Pineapple Delight', price: 699, rating: 4.5, image: '/images/products/pineapple-delight.jpg' },
+  { id: 5, name: 'Butterscotch Bliss', price: 749, rating: 4.6, image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800&q=80' },
+  { id: 6, name: 'Strawberry Paradise', price: 799, rating: 4.7, image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80' },
+  { id: 7, name: 'Pineapple Delight', price: 699, rating: 4.5, image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=800&q=80' },
 ]
 
 const customerReviews = [

@@ -20,7 +20,7 @@ export default function WobbleCardDemo() {
           </p>
         </div>
         <img
-          src="/images/products/chocolate-truffle-delight.jpg"
+          src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80"
           width={500}
           height={500}
           alt="Premium chocolate cake"
@@ -45,7 +45,7 @@ export default function WobbleCardDemo() {
           </p>
         </div>
         <img
-          src="/images/products/red-velvet-romance.jpg"
+          src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80"
           width={500}
           height={500}
           alt="Custom celebration cake"

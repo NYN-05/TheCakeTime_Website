@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Package, ChefHat, Flame, PaintBrush, Truck, CheckCircle2, Clock, MapPin, Phone } from 'lucide-react'
+import { Package, ChefHat, Flame, Paintbrush, Truck, CheckCircle2, Clock, MapPin, Phone } from 'lucide-react'
 
 interface OrderStatus {
   id: string
@@ -42,7 +42,7 @@ const orderSteps = [
   {
     id: 'decorating',
     title: 'Decorating',
-    icon: PaintBrush,
+    icon: Paintbrush,
     description: 'Adding artistic touches',
     color: 'from-pink-500 to-pink-600',
     estimatedTime: '20-30 min',
@@ -296,7 +296,7 @@ export default function OrderTracking({ orderId }: { orderId: string }) {
                           animate={{ opacity: 1, y: 0 }}
                           className="mt-3 p-3 bg-white rounded-lg text-sm text-gray-700 flex items-center gap-2"
                         >
-                          <PaintBrush className="w-4 h-4 text-pink-500" />
+                          <Paintbrush className="w-4 h-4 text-pink-500" />
                           <span>Our artist is adding the final decorative touches! 🎨</span>
                         </motion.div>
                       )}

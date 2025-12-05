@@ -48,8 +48,8 @@ const blogContent = {
   title: "The Art of Custom Cake Design",
   description:
     "Discover how our master bakers craft personalized cakes that turn your dreams into delicious reality. Each creation is a masterpiece made with love.",
-  image: "/images/products/chocolate-truffle-delight.jpg",
-  authorAvatar: "/images/categories/custom-cakes.jpg",
+  image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+  authorAvatar: "https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=100&q=80",
 };
 
 const TitleComponent = ({

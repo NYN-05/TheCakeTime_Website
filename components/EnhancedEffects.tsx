@@ -11,10 +11,17 @@ export const TypewriterEffect = ({
   cursorClassName?: string;
 }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
+  const [currentText, setCurrentText] = useState(words[0] || "");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    
     const word = words[currentWordIndex];
 
     const timeout = setTimeout(
@@ -38,7 +45,7 @@ export const TypewriterEffect = ({
     );
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, currentWordIndex, words]);
+  }, [currentText, isDeleting, currentWordIndex, words, mounted]);
 
   return (
     <span className={className}>

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Cake, Heart, Truck, Award, Star, ChevronRight, Sparkles, Calendar } from 'lucide-react'
+import { Cake, Heart, Truck, Award, Star, ChevronRight, Sparkles, Calendar, Users } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ProductImage from '../components/ProductImage'
@@ -11,13 +11,12 @@ import { useEffect, useState } from 'react'
 import { InfiniteMovingCardsDemo } from '../components/InfiniteMovingCardsDemo'
 import { CardContainer, CardBody, CardItem } from '../components/ui/3d-card'
 import WobbleCardDemo from '../components/wobble-card-demo'
-import { InlineTextReveal } from '../components/ui/inline-text-reveal'
 import { FollowingPointerDemo } from '../components/FollowingPointerDemo'
 import { StatsSection } from '../components/AnimatedCounter'
 import { useToast } from '../components/ToastNotification'
 import { QuickViewModal, useQuickView } from '../components/QuickViewModal'
 import { FAQAccordion } from '../components/FAQAccordion'
-import { TypewriterEffect, ImageComparisonSlider } from '../components/EnhancedEffects'
+import { ImageComparisonSlider } from '../components/EnhancedEffects'
 import { ParticleButton } from '../components/Confetti'
 import { 
   StorySection, 
@@ -29,7 +28,7 @@ import {
   FlavorJourney
 } from '../components/StorytellingComponents'
 import { ScrollProgressBar, ScrollToTopButton } from '../components/ScrollProgress'
-import { Eye, Waves, Coffee, Wind, Users, Sparkles as SparklesIcon } from 'lucide-react'
+import { Eye, Waves, Coffee, Wind, Sparkles as SparklesIcon } from 'lucide-react'
 
 const categories = [
   { name: 'Birthday Cakes', image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=800&q=80', link: '/products?category=birthday' },
@@ -199,24 +198,11 @@ export default function Home() {
                 ✨ Premium Handcrafted Cakes
               </span>
             </div>
-            <InlineTextReveal
-              beforeText="Celebrate Every Moment with"
-              revealText="TheCakeTime"
-              className="text-5xl md:text-7xl font-display font-bold text-white mb-6 animate-text-shimmer bg-gradient-to-r from-white via-pink-200 to-white bg-clip-text text-transparent bg-[length:200%_auto]"
-            />
+            <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6" suppressHydrationWarning>
+              Celebrate Every Moment with <span className="text-pink-300">TheCakeTime</span>
+            </h1>
             <p className="text-xl md:text-2xl text-pink-100 mb-8 animate-fade-in-up animation-delay-200">
-              {!mounted && "Premium custom cakes crafted with love"}
-              {mounted && (
-                <TypewriterEffect 
-                  words={[
-                    "Premium custom cakes crafted with love",
-                    "Fresh ingredients, unforgettable taste",
-                    "Making your celebrations sweeter",
-                    "Baked fresh daily with passion"
-                  ]}
-                  className="text-pink-100"
-                />
-              )}
+              Premium custom cakes crafted with love
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
               <Link href="/products" className="btn-primary group relative overflow-hidden">
@@ -676,8 +662,8 @@ export default function Home() {
           </div>
           <div className="max-w-4xl mx-auto scroll-animate">
             <ImageComparisonSlider
-              beforeImage="/images/products/vanilla-dream.jpg"
-              afterImage="/images/products/chocolate-truffle-delight.jpg"
+              beforeImage="https://images.unsplash.com/photo-1588195538326-c5b1e5b80857?w=800&q=80"
+              afterImage="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80"
               beforeLabel="Concept"
               afterLabel="Final Creation"
             />

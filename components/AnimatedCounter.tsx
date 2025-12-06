@@ -18,11 +18,16 @@ export const AnimatedCounter = ({
   className = "",
 }: CounterProps) => {
   const [count, setCount] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!isInView) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isInView || !mounted) return;
 
     let startTime: number;
     let animationFrame: number;
@@ -42,7 +47,7 @@ export const AnimatedCounter = ({
     animationFrame = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrame);
-  }, [end, duration, isInView]);
+  }, [end, duration, isInView, mounted]);
 
   return (
     <motion.span
@@ -51,9 +56,10 @@ export const AnimatedCounter = ({
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.5 }}
       className={className}
+      suppressHydrationWarning
     >
       {prefix}
-      {count}
+      {mounted ? count : end}
       {suffix}
     </motion.span>
   );

@@ -5,8 +5,10 @@ import { Cake } from "lucide-react";
 
 export const PageLoader = () => {
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false);
@@ -14,6 +16,9 @@ export const PageLoader = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Don't render on server to avoid hydration mismatch
+  if (!mounted) return null;
 
   return (
     <AnimatePresence>

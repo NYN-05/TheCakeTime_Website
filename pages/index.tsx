@@ -163,7 +163,7 @@ export default function Home() {
       {mounted && <FloatingCart count={cartCount} total={cartTotal} />}
 
       {/* Hero Section with Parallax */}
-      <section className="relative h-[700px] overflow-hidden">
+      <section className="relative h-[700px] overflow-hidden gradient-bg-animated">
         {/* Animated Background with Parallax */}
         <div className="absolute inset-0 parallax" data-speed="0.5">
           <Image 
@@ -179,39 +179,51 @@ export default function Home() {
 
         {/* Floating decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 animate-float-slow">
-            <Sparkles className="text-pink-300 opacity-60" size={40} />
+          <div className="absolute top-20 left-10 animate-float-slow sparkle">
+            <Sparkles className="text-pink-300 opacity-80" size={40} />
           </div>
-          <div className="absolute top-40 right-20 animate-float-delay">
-            <Sparkles className="text-yellow-300 opacity-50" size={30} />
+          <div className="absolute top-40 right-20 animate-float-delay cherry-bounce">
+            <Sparkles className="text-yellow-300 opacity-70" size={30} />
           </div>
-          <div className="absolute bottom-32 left-1/4 animate-float">
-            <Sparkles className="text-pink-400 opacity-40" size={35} />
+          <div className="absolute bottom-32 left-1/4 animate-float particle">
+            <Sparkles className="text-pink-400 opacity-60" size={35} />
+          </div>
+          <div className="absolute top-1/3 right-1/4 animate-bounce-soft stagger-2">
+            <Sparkles className="text-purple-300 opacity-50" size={25} />
+          </div>
+          <div className="absolute bottom-1/4 right-10 animate-heartbeat stagger-3">
+            <Heart className="text-pink-400 opacity-40" size={30} />
           </div>
         </div>
         
         {/* Content with entrance animation */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center px-4 max-w-4xl animate-fade-in-up">
+          <div className="text-center px-4 max-w-4xl animate-fade-in-up page-transition">
             <div className="mb-4 inline-block">
-              <span className="px-4 py-2 bg-pink-500/20 backdrop-blur-sm border border-pink-300/30 rounded-full text-pink-200 text-sm font-semibold animate-pulse-slow">
+              <span className="px-4 py-2 bg-pink-500/20 backdrop-blur-sm border border-pink-300/30 rounded-full text-pink-200 text-sm font-semibold animate-pulse-slow badge-pulse">
                 ✨ Premium Handcrafted Cakes
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6" suppressHydrationWarning>
-              Celebrate Every Moment with <span className="text-pink-300">TheCakeTime</span>
+            <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 text-glow-pink" suppressHydrationWarning>
+              Celebrate Every Moment with <span className="text-pink-300 animated-gradient-text">TheCakeTime</span>
             </h1>
             <p className="text-xl md:text-2xl text-pink-100 mb-8 animate-fade-in-up animation-delay-200">
               Premium custom cakes crafted with love
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-              <Link href="/products" className="btn-primary group relative overflow-hidden">
-                <span className="relative z-10">View Products</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-pink-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+              <Link href="/products" className="btn-glow shine-effect group relative overflow-hidden">
+                <span className="relative z-10">View Products ✨</span>
               </Link>
-              <Link href="/custom-order" className="bg-white text-pink-600 hover:bg-pink-50 px-8 py-3 rounded-full font-semibold transition-all hover:shadow-xl hover:scale-105 border-2 border-pink-200">
-                Custom Order ✨
+              <Link href="/custom-order" className="bg-white text-pink-600 hover:bg-pink-50 px-8 py-3 rounded-full font-semibold transition-all hover:shadow-xl hover:scale-105 border-2 border-pink-200 btn-magnetic shine-effect">
+                Custom Order 🎂
               </Link>
+            </div>
+            
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+              <div className="scroll-indicator">
+                <ChevronRight className="text-white/60 rotate-90" size={30} />
+              </div>
             </div>
           </div>
         </div>
@@ -221,33 +233,41 @@ export default function Home() {
       <section className="section-padding bg-gradient-to-b from-white to-pink-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 scroll-animate">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 animated-gradient-text">
               Our Categories
             </h2>
             <p className="text-gray-600 text-lg">Discover your perfect cake from our curated collection</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category, idx) => (
-              <Link key={category.name} href={category.link} className="group scroll-animate" style={{ animationDelay: `${idx * 100}ms` }}>
-                <div className="card overflow-hidden relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                  <div className="relative h-64 overflow-hidden">
+              <Link key={category.name} href={category.link} className={`group scroll-animate stagger-${idx + 1}`}>
+                <div className="card overflow-hidden relative hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 card-3d-hover shine-effect">
+                  <div className="relative h-64 overflow-hidden image-overlay">
                     <ProductImage 
                       src={category.image} 
                       alt={category.name} 
                       fill 
-                      className="object-cover group-hover:scale-125 group-hover:rotate-3 transition-transform duration-500"
+                      className="object-cover group-hover:scale-125 group-hover:rotate-3 transition-transform duration-700"
                     />
                     {/* Gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="p-4 text-center relative">
-                    <h3 className="text-xl font-semibold group-hover:text-pink-600 transition-colors">{category.name}</h3>
-                    <div className="mt-2 text-pink-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                      Explore →
+                    <div className="absolute inset-0 bg-gradient-to-t from-pink-600/90 via-purple-600/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {/* Hover content */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-10">
+                      <span className="bg-white text-pink-600 px-6 py-3 rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 shadow-xl">
+                        Explore →
+                      </span>
                     </div>
                   </div>
-                  {/* Corner accent */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-pink-500 transform rotate-45 translate-x-10 -translate-y-10 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-300"></div>
+                  <div className="p-5 text-center relative bg-gradient-to-b from-white to-pink-50/50">
+                    <h3 className="text-xl font-bold group-hover:text-pink-600 transition-colors underline-animation">{category.name}</h3>
+                    <p className="text-sm text-gray-500 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Click to explore
+                    </p>
+                  </div>
+                  {/* Animated corner accent */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-pink-500 to-purple-600 transform rotate-45 translate-x-12 -translate-y-12 group-hover:translate-x-10 group-hover:-translate-y-10 transition-transform duration-500"></div>
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{boxShadow: '0 0 30px rgba(236, 72, 153, 0.3), 0 0 60px rgba(168, 85, 247, 0.2)'}}></div>
                 </div>
               </Link>
             ))}
@@ -257,12 +277,18 @@ export default function Home() {
 
       {/* Why Choose Us - Wobble Cards */}
       <section className="section-padding bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+        {/* Decorative background */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-pink-500 rounded-full blur-3xl animate-blob"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+        <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-pink-600 font-semibold text-sm uppercase tracking-wider mb-2 block">Why Us</span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 animated-gradient-text">
               Why Choose TheCakeTime
             </h2>
-            <p className="text-gray-600 text-lg">Experience excellence in every bite</p>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">Experience excellence in every bite with our premium handcrafted cakes</p>
           </div>
           <div className="scroll-animate">
             <WobbleCardDemo />
@@ -273,9 +299,10 @@ export default function Home() {
       {/* 5 Pitch-Winning Features */}
       <section className="section-padding bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
         {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-blob"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-300 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -458,10 +485,15 @@ export default function Home() {
       </section>
 
       {/* USPs with Interactive Cards */}
-      <section className="section-padding bg-white relative">
-        <div className="max-w-7xl mx-auto">
+      <section className="section-padding bg-white relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pink-100 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-50 -translate-x-1/2 translate-y-1/2"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-bold mb-4 inline-block badge-pulse">💎 WHY US</span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 animated-gradient-text mt-4">
               Why Choose Us
             </h2>
             <p className="text-gray-600 text-lg">Excellence in every bite, care in every creation</p>
@@ -470,27 +502,28 @@ export default function Home() {
             {usps.map((usp, idx) => (
               <div 
                 key={usp.title} 
-                className="group text-center scroll-animate hover:scale-105 transition-all duration-300"
-                style={{ animationDelay: `${idx * 100}ms` }}
+                className={`group text-center scroll-animate hover:scale-105 transition-all duration-500 stagger-${idx + 1}`}
               >
-                <div className="relative">
-                  {/* Animated circle background */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-24 h-24 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-20 scale-0 group-hover:scale-150 transition-all duration-500 blur-xl"></div>
+                <div className="card-3d-hover p-8 rounded-2xl bg-white border border-pink-100 hover:border-pink-300 hover:shadow-2xl transition-all duration-500">
+                  <div className="relative">
+                    {/* Animated circle background */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-24 h-24 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-30 scale-0 group-hover:scale-150 transition-all duration-500 blur-xl"></div>
+                    </div>
+                    
+                    {/* Icon container with gradient border and animation */}
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl mb-6 shadow-lg group-hover:shadow-2xl group-hover:rotate-12 transition-all duration-500 relative animate-float">
+                      <div className="absolute inset-0.5 bg-white rounded-2xl"></div>
+                      <usp.icon size={36} className="text-pink-600 relative z-10 group-hover:scale-110 transition-transform" />
+                    </div>
                   </div>
                   
-                  {/* Icon container with gradient border */}
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl mb-6 shadow-lg group-hover:shadow-2xl group-hover:rotate-6 transition-all duration-300 relative">
-                    <div className="absolute inset-0.5 bg-white rounded-2xl"></div>
-                    <usp.icon size={36} className="text-pink-600 relative z-10 group-hover:scale-110 transition-transform" />
-                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-pink-600 transition-colors underline-animation">{usp.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{usp.description}</p>
+                  
+                  {/* Decorative line with animation */}
+                  <div className="mt-4 h-1 w-0 group-hover:w-20 bg-gradient-to-r from-pink-500 to-purple-600 mx-auto transition-all duration-500 rounded-full"></div>
                 </div>
-                
-                <h3 className="text-xl font-bold mb-3 group-hover:text-pink-600 transition-colors">{usp.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{usp.description}</p>
-                
-                {/* Decorative line */}
-                <div className="mt-4 h-1 w-0 group-hover:w-16 bg-gradient-to-r from-pink-500 to-purple-600 mx-auto transition-all duration-300 rounded-full"></div>
               </div>
             ))}
           </div>
@@ -696,9 +729,15 @@ export default function Home() {
         <div className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-32 left-1/2 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
         
+        {/* Sparkle decorations */}
+        <div className="absolute top-10 left-1/4 sparkle opacity-60"></div>
+        <div className="absolute top-1/3 right-1/4 sparkle opacity-40" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute bottom-1/4 left-1/3 sparkle opacity-50" style={{animationDelay: '1s'}}></div>
+        
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="px-4 py-2 bg-white/80 backdrop-blur-sm text-pink-600 rounded-full text-sm font-bold mb-4 inline-block badge-pulse shadow-lg">⭐ TESTIMONIALS</span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 animated-gradient-text mt-4">
               What Our Customers Say
             </h2>
             <p className="text-gray-700 text-lg">Real stories from real people who love our cakes</p>
@@ -735,31 +774,40 @@ export default function Home() {
           <svg className="absolute bottom-0 w-full h-32 animate-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
           </svg>
+          <svg className="absolute bottom-0 w-full h-24 animate-wave" style={{animationDelay: '-2s'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="rgba(255,255,255,0.05)" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,186.7C672,203,768,181,864,160C960,139,1056,117,1152,128C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
         </div>
         
-        {/* Floating decorative elements */}
+        {/* Floating decorative elements with enhanced animation */}
         <div className="absolute top-10 left-10 w-20 h-20 border-4 border-white/20 rounded-full animate-spin-slow"></div>
         <div className="absolute bottom-10 right-10 w-16 h-16 border-4 border-white/20 rounded-full animate-spin-slow animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-5 w-12 h-12 bg-white/10 rounded-full animate-float"></div>
+        <div className="absolute top-1/3 right-10 w-8 h-8 bg-white/10 rounded-full animate-float" style={{animationDelay: '1s'}}></div>
+        
+        {/* Sparkle effects */}
+        <div className="absolute top-20 left-1/4 sparkle opacity-40"></div>
+        <div className="absolute bottom-20 right-1/4 sparkle opacity-30" style={{animationDelay: '0.5s'}}></div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10 scroll-animate">
-          <div className="inline-block mb-6">
+          <div className="inline-block mb-6 animate-bounce-soft">
             <Sparkles className="text-yellow-300 animate-pulse" size={48} />
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 animate-text-shimmer bg-gradient-to-r from-white via-pink-200 to-white bg-clip-text text-transparent bg-[length:200%_auto]">
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 animate-text-shimmer bg-gradient-to-r from-white via-pink-200 to-white bg-clip-text text-transparent bg-[length:200%_auto] text-glow-pink">
             Ready to Order Your Perfect Cake?
           </h2>
           
-          <p className="text-xl md:text-2xl mb-10 text-pink-100">
+          <p className="text-xl md:text-2xl mb-10 text-pink-100 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
             Contact us via WhatsApp or phone for quick orders and custom requests
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up" style={{animationDelay: '0.5s'}}>
             <a 
               href="https://wa.me/1234567890" 
-              className="group bg-white text-pink-600 hover:bg-pink-50 px-10 py-4 rounded-full font-bold text-lg transition-all hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-2"
+              className="group bg-white text-pink-600 hover:bg-pink-50 px-10 py-4 rounded-full font-bold text-lg transition-all hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-2 btn-glow shine-effect"
             >
-              <svg className="w-6 h-6 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 group-hover:rotate-12 transition-transform animate-bounce-soft" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
               WhatsApp Us
@@ -767,7 +815,7 @@ export default function Home() {
             
             <a 
               href="tel:+911234567890" 
-              className="group border-3 border-white text-white hover:bg-white hover:text-pink-600 px-10 py-4 rounded-full font-bold text-lg transition-all hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-2"
+              className="group border-3 border-white text-white hover:bg-white hover:text-pink-600 px-10 py-4 rounded-full font-bold text-lg transition-all hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-2 btn-magnetic shine-effect"
             >
               <svg className="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -776,8 +824,8 @@ export default function Home() {
             </a>
           </div>
           
-          <div className="mt-10 pt-10 border-t border-white/20">
-            <p className="text-pink-100 text-sm">
+          <div className="mt-10 pt-10 border-t border-white/20 animate-fade-in-up" style={{animationDelay: '0.7s'}}>
+            <p className="text-pink-100 text-sm badge-pulse inline-block px-6 py-3 bg-white/10 rounded-full backdrop-blur-sm">
               🎂 Over 10,000+ Happy Customers | ⭐ 4.9 Average Rating | 🚚 Same-Day Delivery Available
             </p>
           </div>

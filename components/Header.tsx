@@ -6,9 +6,11 @@ import { useCart } from '../contexts/CartContext'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { cartCount } = useCart()
 
   useEffect(() => {
+    setMounted(true)
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
@@ -55,7 +57,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/checkout" className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
               <ShoppingCart size={24} className="text-gray-700" />
-              {cartCount > 0 && (
+              {mounted && cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {cartCount}
                 </span>

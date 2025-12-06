@@ -5,11 +5,14 @@ import { Cookie, X } from "lucide-react";
 
 export const CookieConsent = () => {
   const [show, setShow] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const consent = localStorage.getItem("cookieConsent");
     if (!consent) {
-      setShow(true);
+      // Delay showing to avoid any flash
+      setTimeout(() => setShow(true), 100);
     }
   }, []);
 
@@ -22,6 +25,9 @@ export const CookieConsent = () => {
     localStorage.setItem("cookieConsent", "declined");
     setShow(false);
   };
+
+  // Don't render anything until mounted to avoid hydration mismatch
+  if (!mounted) return null;
 
   return (
     <AnimatePresence>

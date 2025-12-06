@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 
 export const ScrollProgressBar = () => {
+  const [mounted, setMounted] = useState(false)
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   })
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   return (
     <motion.div
@@ -18,20 +25,26 @@ export const ScrollProgressBar = () => {
 }
 
 export const ScrollToTopButton = () => {
+  const [mounted, setMounted] = useState(false)
   const { scrollY } = useScroll()
   const [isVisible, setIsVisible] = React.useState(false)
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   React.useEffect(() => {
+    if (!mounted) return
     return scrollY.onChange((latest) => {
       setIsVisible(latest > 500)
     })
-  }, [scrollY])
+  }, [scrollY, mounted])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  if (!isVisible) return null
+  if (!mounted || !isVisible) return null
 
   return (
     <motion.button

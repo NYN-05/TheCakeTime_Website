@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const CustomOrder = require('../models/CustomOrder')
 const { authenticate, authorize } = require('../middleware/auth')
+const { sendEmail } = require('../utils/emailService')
+const { customOrderSchema, validate } = require('../utils/validators')
 
 // Create custom order
 router.post('/', async (req, res) => {
@@ -9,10 +11,19 @@ router.post('/', async (req, res) => {
     const customOrder = new CustomOrder(req.body)
     await customOrder.save()
     
-    // Here you would send email notification to admin
+    // Send confirmation email to customer
+    sendEmail(customOrder.customer.email, 'customOrderReceived', customOrder)
+    
+    // Notify admin
+    if (process.env.ADMIN_EMAIL) {
+      sendEmail(process.env.ADMIN_EMAIL, 'adminNewOrder', {
+        ...customOrder.toObject(),
+        payment: { amount: 'Custom Quote Required' }
+      })
+    }
     
     res.status(201).json({
-      message: 'Custom order submitted successfully',
+      message: 'Custom order submitted successfully! We\'ll contact you within 24 hours.',
       order: customOrder
     })
   } catch (error) {

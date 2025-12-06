@@ -4,18 +4,23 @@ import { motion } from "framer-motion";
 
 export const ScrollProgress = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const updateScrollProgress = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrolled = window.scrollY;
-      const progress = (scrolled / scrollHeight) * 100;
+      const progress = scrollHeight > 0 ? (scrolled / scrollHeight) * 100 : 0;
       setScrollProgress(progress);
     };
 
     window.addEventListener("scroll", updateScrollProgress);
+    updateScrollProgress(); // Initial call
     return () => window.removeEventListener("scroll", updateScrollProgress);
   }, []);
+
+  if (!mounted) return null;
 
   return (
     <motion.div
@@ -28,8 +33,10 @@ export const ScrollProgress = () => {
 
 export const BackToTop = () => {
   const [show, setShow] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setShow(window.scrollY > 300);
     };
@@ -41,6 +48,8 @@ export const BackToTop = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  if (!mounted) return null;
 
   return (
     <motion.button

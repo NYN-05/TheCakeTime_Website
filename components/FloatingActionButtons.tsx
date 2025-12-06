@@ -1,14 +1,22 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, MessageCircle } from "lucide-react";
 
 export const FloatingActionButtons = () => {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
   const [showCall, setShowCall] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const whatsappNumber = "1234567890";
   const phoneNumber = "+911234567890";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Don't render on server to avoid hydration issues with animations
+  if (!mounted) return null;
 
   return (
     <div className="fixed bottom-24 right-8 z-[9998] flex flex-col gap-4">

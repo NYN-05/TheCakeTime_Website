@@ -4,18 +4,39 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { useState, useEffect } from 'react'
 import { CartProvider } from '../contexts/CartContext'
 import ErrorBoundary from '../components/ErrorBoundary'
-import { GlobalCursor } from '../components/GlobalCursor'
 import { ToastProvider } from '../components/ToastNotification'
-import { PageLoader } from '../components/PageLoader'
-import { ScrollProgress, BackToTop } from '../components/ScrollEnhancements'
-import { FloatingActionButtons } from '../components/FloatingActionButtons'
-import { CookieConsent } from '../components/CookieConsent'
-import { NewsletterPopup } from '../components/NewsletterPopup'
 import dynamic from 'next/dynamic'
 
-// Lazy load non-critical components
-const LazyGlobalCursor = dynamic(() => import('../components/GlobalCursor').then(mod => ({ default: mod.GlobalCursor })), { ssr: false })
-const LazyNewsletterPopup = dynamic(() => import('../components/NewsletterPopup').then(mod => ({ default: mod.NewsletterPopup })), { ssr: false })
+// Dynamic imports for client-only components to prevent SSR hydration issues
+// These components use browser APIs (window, document, localStorage) that aren't available on server
+const ScrollProgress = dynamic(
+  () => import('../components/ScrollEnhancements').then(mod => ({ default: mod.ScrollProgress })),
+  { ssr: false }
+)
+const BackToTop = dynamic(
+  () => import('../components/ScrollEnhancements').then(mod => ({ default: mod.BackToTop })),
+  { ssr: false }
+)
+const GlobalCursor = dynamic(
+  () => import('../components/GlobalCursor').then(mod => ({ default: mod.GlobalCursor })),
+  { ssr: false }
+)
+const FloatingActionButtons = dynamic(
+  () => import('../components/FloatingActionButtons').then(mod => ({ default: mod.FloatingActionButtons })),
+  { ssr: false }
+)
+const CookieConsent = dynamic(
+  () => import('../components/CookieConsent').then(mod => ({ default: mod.CookieConsent })),
+  { ssr: false }
+)
+const NewsletterPopup = dynamic(
+  () => import('../components/NewsletterPopup').then(mod => ({ default: mod.NewsletterPopup })),
+  { ssr: false }
+)
+const PageLoader = dynamic(
+  () => import('../components/PageLoader').then(mod => ({ default: mod.PageLoader })),
+  { ssr: false }
+)
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient({
@@ -51,13 +72,12 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
           <CartProvider>
-            <PageLoader />
             <ScrollProgress />
-            <LazyGlobalCursor />
+            <GlobalCursor />
             <FloatingActionButtons />
             <BackToTop />
             <CookieConsent />
-            <LazyNewsletterPopup />
+            <NewsletterPopup />
             <Component {...pageProps} />
           </CartProvider>
         </ToastProvider>

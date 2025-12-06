@@ -1,22 +1,36 @@
 const express = require('express')
 const router = express.Router()
 const Order = require('../models/Order')
+const { sendEmail } = require('../utils/emailService')
+const { orderSchema, validate } = require('../utils/validators')
 
 // Get all orders (with optional filters)
 router.get('/', async (req, res) => {
   try {
-    const { status, userId, email } = req.query
+    const { status, userId, email, page = 1, limit = 20 } = req.query
     let query = {}
     
     if (status) query.status = status
     if (userId) query.userId = userId
     if (email) query['customer.email'] = email
     
-    const orders = await Order.find(query)
-      .sort({ createdAt: -1 })
-      .limit(100)
+    const skip = (parseInt(page) - 1) * parseInt(limit)
     
-    res.json({ orders, count: orders.length })
+    const [orders, total] = await Promise.all([
+      Order.find(query)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(parseInt(limit)),
+      Order.countDocuments(query)
+    ])
+    
+    res.json({ 
+      orders, 
+      count: orders.length,
+      total,
+      page: parseInt(page),
+      pages: Math.ceil(total / parseInt(limit))
+    })
   } catch (error) {
     console.error('Get orders error:', error)
     res.status(500).json({ error: error.message })
@@ -44,6 +58,14 @@ router.post('/', async (req, res) => {
   try {
     const order = new Order(req.body)
     await order.save()
+    
+    // Send confirmation email to customer
+    sendEmail(order.customer.email, 'orderConfirmation', order)
+    
+    // Send notification to admin
+    if (process.env.ADMIN_EMAIL) {
+      sendEmail(process.env.ADMIN_EMAIL, 'adminNewOrder', order)
+    }
     
     res.status(201).json({
       success: true,
@@ -78,6 +100,9 @@ router.patch('/:id/status', async (req, res) => {
     if (!order) {
       return res.status(404).json({ error: 'Order not found' })
     }
+    
+    // Send status update email to customer
+    sendEmail(order.customer.email, 'orderStatusUpdate', order, status)
     
     res.json({ success: true, order })
   } catch (error) {

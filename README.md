@@ -1,437 +1,328 @@
-# TheCakeTime Bakery Website
+# 🍰 TheCakeTime Bakery Website
 
-A complete, production-ready bakery website built with Next.js, React, Express, MongoDB, and Stripe payment integration.
+[![Next.js](https://img.shields.io/badge/Next.js-14.0.4-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18.2.0-blue)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3.6-38B2AC)](https://tailwindcss.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-8.0.3-green)](https://www.mongodb.com/)
+[![Stripe](https://img.shields.io/badge/Stripe-20.0.0-635BFF)](https://stripe.com/)
+[![License](https://img.shields.io/badge/License-Private-red)](#license)
 
-## Features
+> A complete, production-ready bakery e-commerce website built with modern web technologies. Features beautiful UI, secure payments, and comprehensive admin dashboard.
 
-### Customer-Facing Features
-- 🏠 Beautiful landing page with parallax effects and animated hero section
-- 🎂 Product catalog with advanced filtering and sorting
-- 🔍 Search functionality with real-time results
-- 📦 Individual product detail pages with reviews
-- 🛒 Shopping cart with persistent storage
-- 💳 Stripe payment integration for secure checkout
-- 🎨 Custom cake order form with image upload
-- 🖼️ Gallery with masonry layout and lightbox
-- 📱 Fully responsive mobile-first design
-- ⭐ Customer reviews and ratings
-- 📞 Contact page with interactive form
-- ❓ Comprehensive FAQ section
-- ℹ️ About page with company history and team
-- 📄 Legal pages (Terms, Privacy, Refund, Delivery policies)
-- ✨ Unique UI elements (custom cursor, scroll animations, gradient designs)
-- 🎯 Floating cart widget
+![TheCakeTime Banner](https://img.shields.io/badge/TheCakeTime-Bakery-orange?style=for-the-badge&logo=cake&logoColor=white)
 
-### Admin Features
-- 🔐 Secure authentication with JWT (separate admin system)
-- 📊 Dashboard with analytics and insights
-- 📝 Product management (CRUD operations)
-- 🛒 Order management and tracking
-- 💬 Custom order tracking
-- ⭐ Review moderation
-- 👥 User management
-- ⚙️ Settings panel
+## ✨ Features
 
-### Design & UX Features
-- 🎨 **Consistent Gradient Design** - Pink-to-purple gradients across all pages
-- ✨ **Scroll Animations** - Elements fade in as you scroll with staggered delays
-- 🎭 **Custom Cursor** - Pink gradient cursor with trailing follower effect
-- 🎪 **Parallax Effects** - Smooth parallax scrolling on hero sections
-- 🌊 **Animated Backgrounds** - Floating blobs and gradient overlays
-- 💫 **3D Card Effects** - Hover transformations with scale and rotate
-- 🎯 **Floating Cart** - Persistent cart preview in bottom-right corner
-- 🌟 **Sparkle Icons** - Decorative sparkles on headings
-- 🎬 **Page Transitions** - Smooth animations between sections
-- 📱 **Mobile Optimized** - Full responsive design for all devices
+### 🛒 Customer-Facing Features
+- **🏠 Landing Page** - Stunning parallax effects with animated hero section
+- **🎂 Product Catalog** - Advanced filtering, sorting, and search functionality
+- **📦 Product Details** - Individual pages with reviews and ratings
+- **🛒 Shopping Cart** - Persistent cart with localStorage integration
+- **💳 Secure Payments** - Stripe integration for seamless checkout
+- **🎨 Custom Orders** - Interactive form with image upload capabilities
+- **🖼️ Gallery** - Masonry layout with lightbox functionality
+- **📱 Mobile-First** - Fully responsive design for all devices
+- **⭐ Reviews System** - Customer ratings and feedback
+- **📞 Contact Forms** - Interactive communication channels
+- **❓ FAQ Section** - Comprehensive help and support
+- **ℹ️ Company Pages** - About, terms, privacy, and policies
+- **✨ Unique UX** - Custom cursor, scroll animations, gradient designs
+- **🎯 Floating Cart** - Persistent cart preview widget
 
-## Tech Stack
+### 🔧 Admin Features
+- **🔐 Secure Authentication** - Dual JWT system for customers and admins
+- **📊 Analytics Dashboard** - Insights and key metrics
+- **📝 Product Management** - Full CRUD operations
+- **🛒 Order Management** - Complete order lifecycle tracking
+- **💬 Custom Order Handling** - Specialized order processing
+- **⭐ Review Moderation** - Content management system
+- **👥 User Management** - Customer and admin account control
+- **⚙️ Settings Panel** - Configuration and preferences
+
+### 🎨 Design & UX Highlights
+- **🌈 Gradient Design** - Consistent pink-to-purple theme
+- **📜 Scroll Animations** - Smooth fade-in effects with delays
+- **🖱️ Custom Cursor** - Interactive cursor with trailing effects
+- **🎪 Parallax Effects** - Dynamic background movements
+- **🌊 Animated Backgrounds** - Floating elements and overlays
+- **💫 3D Card Effects** - Hover transformations and rotations
+- **🎯 Floating Widgets** - Persistent UI elements
+- **✨ Decorative Elements** - Sparkles and visual enhancements
+- **🎬 Page Transitions** - Smooth section animations
+- **📱 Mobile Optimized** - Perfect on all screen sizes
+
+## 🚀 Tech Stack
 
 ### Frontend
-- **Framework:** Next.js 14.0.4
-- **UI Library:** React 18
-- **Language:** TypeScript
-- **Styling:** TailwindCSS with custom animations
-- **Icons:** Lucide React
-- **State Management:** React Context API (CartContext)
-- **Image Optimization:** Next/Image
-- **Payments:** Stripe (@stripe/stripe-js, @stripe/react-stripe-js)
-- **Animations:** Custom CSS keyframes + Intersection Observer
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js) | 14.0.4 | React Framework |
+| ![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react) | 18.2.0 | UI Library |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript) | 5.0+ | Type Safety |
+| ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat&logo=tailwind-css) | 3.3.6 | Styling |
+| ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer) | 12.23.25 | Animations |
 
-### Backend
-- **Runtime:** Node.js
-- **Framework:** Express
-- **Database:** MongoDB with Mongoose
-- **Authentication:** Dual JWT system (Customer + Admin) with bcrypt
-- **Payments:** Stripe API for payment processing
-- **Security:** Helmet, CORS, Rate Limiting
-- **File Upload:** Multer + Cloudinary (optional)
-- **Environment:** dotenv for configuration
+### Backend & Database
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js) | 18+ | Runtime |
+| ![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express) | 4.18.2 | Web Framework |
+| ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb) | 8.0.3 | Database |
+| ![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=flat&logo=mongoose) | 8.0.3 | ODM |
+
+### Payments & Security
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| ![Stripe](https://img.shields.io/badge/Stripe-635BFF?style=flat&logo=stripe) | 20.0.0 | Payment Processing |
+| ![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=json-web-tokens) | 9.0.2 | Authentication |
+| ![bcrypt](https://img.shields.io/badge/bcrypt-000000?style=flat&logo=lock) | 2.4.3 | Password Hashing |
 
 ## 🔐 Authentication System
 
-TheCakeTime uses a **dual authentication system** with complete separation between customer and admin accounts:
-
-- **Customer Authentication**: `/api/auth` - For regular customers (7-day tokens)
-- **Admin Authentication**: `/api/admin/auth` - For administrators (8-hour tokens)
-
-See [AUTHENTICATION.md](./AUTHENTICATION.md) for complete documentation.
-
-### Key Security Features
-- ✅ Separate JWT secrets for customers and admins
-- ✅ Role-based access control
-- ✅ No role leakage between systems
-- ✅ Protected admin creation endpoint
-- ✅ Different token expiry times for different user types
-
-## Getting Started
-
-### Prerequisites
-- Node.js 18+ installed
-- MongoDB instance (local or Atlas)
-- npm or yarn package manager
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   cd TheCakeTime/bakery-website
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   
-   Create a `.env` file in the root directory:
-   ```env
-   # MongoDB
-   MONGODB_URI=mongodb://localhost:27017/bakery
-   
-   # JWT Secrets (use different secrets for customer and admin)
-   JWT_SECRET=your-customer-jwt-secret-key-here
-   ADMIN_JWT_SECRET=your-admin-jwt-secret-key-here
-   
-   # Stripe Payment Gateway
-   STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
-   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
-   
-   # Cloudinary (optional - for image uploads)
-   CLOUDINARY_CLOUD_NAME=your-cloud-name
-   CLOUDINARY_API_KEY=your-api-key
-   CLOUDINARY_API_SECRET=your-api-secret
-   
-   # Server
-   PORT=5000
-   NODE_ENV=development
-   
-   # Frontend
-   NEXT_PUBLIC_API_URL=http://localhost:5000
-   ```
-   
-   **Security Note:** 
-   - Use strong, unique secrets for JWT_SECRET and ADMIN_JWT_SECRET
-   - Never commit `.env` file to version control
-   - Use `.env.example` as a template (already included)
-
-4. **Run the development servers**
-
-   Terminal 1 - Backend:
-   ```bash
-   npm run server
-   ```
-
-   Terminal 2 - Frontend:
-   ```bash
-   npm run dev
-   ```
-
-5. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
-
-## Project Structure
-
-```
-bakery-website/
-├── pages/                    # Next.js pages (TypeScript)
-│   ├── _app.tsx             # App wrapper with ErrorBoundary
-│   ├── _document.tsx        # Document customization
-│   ├── index.tsx            # Landing page with parallax & animations
-│   ├── products/
-│   │   ├── index.tsx        # Product listing with filters
-│   │   └── [id].tsx         # Product detail page
-│   ├── checkout.tsx         # Multi-step checkout with Stripe
-│   ├── order-success.tsx    # Order confirmation page
-│   ├── custom-order.tsx     # Custom cake order form
-│   ├── gallery.tsx          # Gallery with lightbox
-│   ├── about.tsx            # About page with team
-│   ├── contact.tsx          # Contact form
-│   ├── faq.tsx              # FAQ page
-│   ├── terms.tsx            # Terms & Conditions
-│   ├── privacy.tsx          # Privacy Policy
-│   ├── refund-policy.tsx    # Refund Policy
-│   ├── delivery-policy.tsx  # Delivery Policy
-│   └── admin/               # Admin pages
-│       ├── index.tsx        # Admin login
-│       └── dashboard.tsx    # Admin dashboard
-├── components/              # Reusable components
-│   ├── Header.tsx           # Navigation header
-│   ├── Footer.tsx           # Footer with legal links
-│   ├── UniqueEffects.tsx    # Custom hooks & FloatingCart
-│   ├── ReviewSection.tsx    # Advanced review display
-│   ├── Loading.tsx          # Loading states & skeletons
-│   ├── ErrorBoundary.tsx    # Error handling
-│   ├── CheckoutForm.tsx     # Stripe checkout form
-│   └── ProductImage.tsx     # Optimized image component
-├── contexts/                # React Context
-│   └── CartContext.tsx      # Shopping cart state management
-├── types/                   # TypeScript types
-│   └── index.ts             # Shared type definitions
-├── styles/                  # Global styles
-│   └── globals.css          # TailwindCSS + custom animations
-├── backend/                 # Express backend
-│   ├── server.js            # Main server with Stripe webhook
-│   ├── models/              # MongoDB models
-│   │   ├── User.js
-│   │   ├── Product.js
-│   │   ├── Order.js
-│   │   ├── CustomOrder.js
-│   │   └── Review.js
-│   ├── routes/              # API routes
-│   │   ├── auth.js          # Customer authentication
-│   │   ├── adminAuth.js     # Admin authentication
-│   │   ├── products.js
-│   │   ├── orders.js
-│   │   ├── payment.js       # Stripe payment endpoints
-│   │   ├── customOrders.js
-│   │   └── reviews.js
-│   ├── middleware/          # Middleware
-│   │   ├── auth.js          # Customer auth middleware
-│   │   └── authNew.js       # Admin auth middleware
-│   └── createAdmin.js       # Admin account creation script
-├── public/                  # Static assets
-│   └── images/              # Product images
-├── .env                     # Environment variables (not in git)
-├── .env.example             # Environment template
-├── .gitignore               # Git ignore file
-├── next.config.js           # Next.js configuration
-├── tailwind.config.js       # TailwindCSS configuration
-├── tsconfig.json            # TypeScript configuration
-└── package.json             # Dependencies
-```
-
-## API Endpoints
+TheCakeTime implements a **dual authentication system** with complete separation:
 
 ### Customer Authentication (`/api/auth`)
-- `POST /api/auth/register` - Register new customer
-- `POST /api/auth/login` - Customer login (7-day token)
-- `GET /api/auth/me` - Get current customer profile
+- 7-day JWT tokens for regular users
+- Registration and login endpoints
+- Profile management
 
 ### Admin Authentication (`/api/admin/auth`)
-- `POST /api/admin/auth/register` - Register admin (protected)
-- `POST /api/admin/auth/login` - Admin login (8-hour token)
-- `GET /api/admin/auth/me` - Get current admin profile
+- 8-hour JWT tokens for administrators
+- Separate secret keys and endpoints
+- Role-based access control
 
-### Payment (`/api/payment`)
-- `POST /api/payment/create-payment-intent` - Create Stripe payment intent
-- `POST /api/payment/webhook` - Stripe webhook for payment confirmation
-- `GET /api/payment/config` - Get Stripe publishable key
+> 📖 **Detailed Documentation**: See [AUTHENTICATION.md](./AUTHENTICATION.md)
 
-### Products
-- `GET /api/products` - Get all products (with filters, search, pagination)
-- `GET /api/products/:id` - Get single product with reviews
-- `POST /api/products` - Create product (admin only)
-- `PUT /api/products/:id` - Update product (admin only)
-- `DELETE /api/products/:id` - Delete product (admin only)
+## 📋 Prerequisites
 
-### Orders (`/api/orders`)
-- `POST /api/orders` - Create new order
-- `GET /api/orders` - Get all orders (admin only)
-- `GET /api/orders/customer` - Get customer's orders (auth required)
-- `GET /api/orders/:id` - Get single order
-- `PATCH /api/orders/:id/status` - Update order status (admin only)
+- **Node.js** 18+ installed
+- **MongoDB** instance (local or Atlas)
+- **npm** or **yarn** package manager
+- **Git** for version control
 
-### Custom Orders (`/api/custom-orders`)
-- `POST /api/custom-orders` - Submit custom cake order
-- `GET /api/custom-orders` - Get all custom orders (admin)
-- `GET /api/custom-orders/:id` - Get single custom order
-- `PATCH /api/custom-orders/:id` - Update order status (admin)
+## 🛠️ Installation & Setup
 
-### Reviews (`/api/reviews`)
-- `GET /api/reviews/product/:productId` - Get product reviews
-- `POST /api/reviews` - Submit review (auth required)
-- `PATCH /api/reviews/:id/approve` - Approve review (admin)
-- `GET /api/reviews` - Get all reviews (admin)
-- `DELETE /api/reviews/:id` - Delete review (admin)
+### 1. Clone the Repository
+```bash
+git clone https://github.com/NYN-05/TheCakeTime_Website.git
+cd TheCakeTime_Website
+```
 
-## Features Implementation
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-### Shopping Cart & Checkout
-- **Persistent Cart** - Cart state saved to localStorage
-- **Multi-step Checkout** - Cart → Details → Payment
-- **Stripe Integration** - Secure payment processing
-- **Order Management** - Complete order tracking system
-- **Real-time Updates** - Cart count and total display
-- **Floating Cart Widget** - Always visible cart preview
+### 3. Environment Configuration
 
-### Product Filtering
+Create a `.env` file in the root directory:
+
+```env
+# Database
+MONGODB_URI=mongodb://localhost:27017/thecaketime
+
+# JWT Secrets (use strong, unique secrets)
+JWT_SECRET=your-customer-jwt-secret-here
+ADMIN_JWT_SECRET=your-admin-jwt-secret-here
+
+# Stripe Payment Gateway
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+
+# Optional: Cloudinary for image uploads
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+
+# Server Configuration
+PORT=5000
+NODE_ENV=development
+
+# Frontend Configuration
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
+
+> ⚠️ **Security Note**: Never commit `.env` files to version control!
+
+### 4. Start Development Servers
+
+**Terminal 1 - Backend:**
+```bash
+npm run server
+```
+
+**Terminal 2 - Frontend:**
+```bash
+npm run dev
+```
+
+### 5. Access the Application
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:5000
+
+## 📁 Project Structure
+
+```
+TheCakeTime_Website/
+├── 📄 pages/                    # Next.js pages (TypeScript)
+│   ├── _app.tsx                # App wrapper with providers
+│   ├── _document.tsx           # Document customization
+│   ├── index.tsx               # Landing page
+│   ├── products/               # Product pages
+│   ├── checkout.tsx            # Payment flow
+│   ├── admin/                  # Admin dashboard
+│   └── [other pages]           # Static pages
+├── 🧩 components/              # Reusable components
+│   ├── Header.tsx              # Navigation
+│   ├── Footer.tsx              # Site footer
+│   ├── CheckoutForm.tsx        # Stripe integration
+│   └── [UI components]         # Custom components
+├── 🔄 contexts/                # React Context
+│   └── CartContext.tsx         # Shopping cart state
+├── 📝 types/                   # TypeScript definitions
+├── 🎨 styles/                  # Global styles
+├── ⚙️ backend/                 # Express server
+│   ├── server.js               # Main server file
+│   ├── models/                 # MongoDB schemas
+│   ├── routes/                 # API endpoints
+│   ├── middleware/             # Auth & security
+│   └── utils/                  # Helper functions
+├── 🖼️ public/                  # Static assets
+└── 📦 package.json             # Dependencies
+```
+
+## 🔗 API Endpoints
+
+### Authentication
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/auth/register` | POST | Customer registration |
+| `/api/auth/login` | POST | Customer login |
+| `/api/auth/me` | GET | Get customer profile |
+| `/api/admin/auth/login` | POST | Admin login |
+| `/api/admin/auth/me` | GET | Get admin profile |
+
+### Products & Orders
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/products` | GET/POST | Get products / Create product |
+| `/api/products/:id` | GET/PUT/DELETE | Product CRUD |
+| `/api/orders` | POST | Create order |
+| `/api/orders/customer` | GET | Get customer orders |
+| `/api/payment/create-payment-intent` | POST | Stripe payment |
+
+### Admin Operations
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/orders` | GET | Get all orders |
+| `/api/custom-orders` | GET | Get custom orders |
+| `/api/reviews` | GET | Get all reviews |
+
+## 🎯 Key Features Implementation
+
+### 🛒 Shopping Cart System
+- **Persistent Storage** - Cart survives browser sessions
+- **Real-time Updates** - Live cart count and totals
+- **Floating Widget** - Always-visible cart preview
+- **Multi-step Checkout** - Cart → Details → Payment flow
+
+### 💳 Payment Integration
+- **Stripe Elements** - Secure payment forms
+- **Webhook Handling** - Automatic payment confirmation
+- **Order Tracking** - Complete transaction lifecycle
+- **Error Handling** - Comprehensive payment error management
+
+### 🔍 Advanced Filtering
 Products can be filtered by:
-- Category (birthday, wedding, anniversary, etc.)
-- Flavor (chocolate, vanilla, red velvet, etc.)
-- Weight (500g, 1kg, 2kg, etc.)
-- Occasion (birthday, anniversary, celebration)
-- Type (eggless, with egg)
-- Search by name or description
+- 🎂 **Category**: Birthday, Wedding, Anniversary
+- 🍫 **Flavor**: Chocolate, Vanilla, Red Velvet
+- ⚖️ **Weight**: 500g, 1kg, 2kg
+- 🎉 **Occasion**: Birthday, Anniversary, Celebration
+- 🥚 **Type**: Eggless, With Egg
 
-### Sorting Options
-- Most Popular
-- Price: Low to High
-- Price: High to Low
-- Highest Rated
-- Newest First
+### 📊 Admin Dashboard
+- **📈 Analytics** - Key metrics and insights
+- **📦 Order Management** - Complete order lifecycle
+- **🎨 Product CRUD** - Full product management
+- **⭐ Review Moderation** - Content approval system
+- **👥 User Management** - Customer account control
 
-### Custom Orders
-Custom order form includes:
-- Customer contact details
-- Cake specifications (type, flavor, weight, shape)
-- Theme and message customization
-- Reference image upload
-- Delivery date and time selection
-- Additional notes
-
-### Admin Dashboard
-- Overview with key metrics
-- Recent orders tracking
-- Popular products analytics
-- Product management
-- Order management
-- Custom order tracking
-- Review moderation
-- User management
-
-## Security Features
-
-- **Dual JWT Authentication** - Separate systems for customers and admins
-- **Password Hashing** - bcrypt with salt rounds
-- **Protected Routes** - Middleware-based access control
-- **Role-based Access** - Customer vs Admin permissions
-- **Secure Payment** - Stripe PCI compliance
-- **Environment Variables** - Sensitive data protection
-- **Input Validation** - Mongoose schema validation
-- **Rate Limiting** - API request throttling
-- **CORS Protection** - Cross-origin resource sharing
-- **Helmet Security** - HTTP headers protection
-- **MongoDB Injection Prevention** - Query sanitization
-- **Token Expiry** - Different expiry times (7 days customer, 8 hours admin)
-
-## Deployment
+## 🚀 Deployment
 
 ### Frontend (Vercel)
-1. Push code to GitHub
-2. Import repository in Vercel
-3. Set environment variables
-4. Deploy
+```bash
+# Deploy to Vercel
+vercel --prod
+```
 
-### Backend (Render/Railway/AWS)
-1. Create new web service
-2. Connect repository
-3. Set environment variables
-4. Configure build command: `npm install`
-5. Configure start command: `npm run server`
-6. Deploy
+### Backend (Railway/Render)
+```bash
+# Build command
+npm install
+
+# Start command
+npm run server
+```
 
 ### Database (MongoDB Atlas)
-1. Create cluster
-2. Set up database user
-3. Whitelist IP addresses
-4. Get connection string
-5. Update MONGODB_URI in environment variables
+1. Create cluster on MongoDB Atlas
+2. Set up database user and IP whitelist
+3. Update `MONGODB_URI` in environment variables
 
-## Environment Variables Reference
+## 📊 Available Scripts
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| MONGODB_URI | MongoDB connection string | Yes |
-| JWT_SECRET | Secret key for customer JWT tokens | Yes |
-| ADMIN_JWT_SECRET | Secret key for admin JWT tokens | Yes |
-| STRIPE_SECRET_KEY | Stripe secret API key | Yes |
-| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | Stripe publishable key (public) | Yes |
-| PORT | Backend server port | No (default: 5000) |
-| NODE_ENV | Environment (development/production) | No |
-| NEXT_PUBLIC_API_URL | Backend API URL | Yes |
-| CLOUDINARY_CLOUD_NAME | Cloudinary cloud name | Optional |
-| CLOUDINARY_API_KEY | Cloudinary API key | Optional |
-| CLOUDINARY_API_SECRET | Cloudinary API secret | Optional |
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start Next.js development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run server` | Start Express backend |
+| `npm run lint` | Run ESLint |
+| `npm run perf` | Performance testing |
 
-## Available Scripts
+## 🔒 Security Features
 
-- `npm run dev` - Start Next.js development server (http://localhost:3000)
-- `npm run build` - Build Next.js for production
-- `npm start` - Start Next.js production server
-- `npm run server` - Start Express backend server (http://localhost:5000)
-- `npm run lint` - Run ESLint
-- `node backend/createAdmin.js` - Create admin account
+- ✅ **Dual JWT System** - Separate customer/admin authentication
+- ✅ **Password Hashing** - bcrypt with salt rounds
+- ✅ **Protected Routes** - Middleware-based access control
+- ✅ **Role-based Access** - Customer vs Admin permissions
+- ✅ **Secure Payments** - Stripe PCI compliance
+- ✅ **Environment Variables** - Sensitive data protection
+- ✅ **Input Validation** - Schema-based validation
+- ✅ **Rate Limiting** - API request throttling
+- ✅ **CORS Protection** - Cross-origin security
+- ✅ **Helmet Security** - HTTP headers protection
 
-## Quick Links to Documentation
+## 🤝 Contributing
 
-- [Authentication Guide](./AUTHENTICATION.md) - Complete authentication system documentation
-- [Stripe Payment Guide](./STRIPE_PAYMENT_GUIDE.md) - Payment integration setup
-- [Unique UI Features](./UNIQUE_UI_FEATURES.md) - Custom animations and effects
-- [API Testing Guide](./API_TESTING_GUIDE.md) - How to test the API endpoints
-- [Quickstart Guide](./QUICKSTART.md) - Get started quickly
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## Completed Features
+## 📝 License
 
-- ✅ Shopping cart with persistent storage
-- ✅ Stripe payment gateway integration
-- ✅ Complete order management system
-- ✅ Customer and admin authentication
-- ✅ Unique UI with animations and effects
-- ✅ Legal pages (Terms, Privacy, Refund, Delivery)
-- ✅ Product filtering and search
-- ✅ Custom cake order form
-- ✅ Review and rating system
-- ✅ Responsive mobile design
+This project is **private and proprietary**. All rights reserved.
 
-## Future Enhancements
+## 📞 Support
 
-- [ ] Email notifications for orders
-- [ ] SMS alerts for delivery updates
-- [ ] Order tracking for customers (real-time)
-- [ ] Blog/Articles section
-- [ ] Loyalty program with points
-- [ ] Coupon and discount system
-- [ ] Social media feed integration
-- [ ] Live chat support
-- [ ] Wishlist functionality
-- [ ] Gift card system
-- [ ] Mobile app (React Native)
-- [ ] Push notifications
-- [ ] Multi-language support
-- [ ] Advanced analytics dashboard
+- **Email**: info@thecaketime.com
+- **Phone**: +91 123 456 7890
+- **Website**: [TheCakeTime](https://thecaketime.com)
 
-## Browser Support
+## 🙏 Credits
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers
+Built with ❤️ by the **TheCakeTime Team**
 
-## License
+---
 
-This project is private and proprietary.
-https://github.com/NYN-05/TheCakeTime_Website
+<div align="center">
 
-## Support
+**🍰 Made with love for cake lovers everywhere! 🍰**
 
-For support, email info@thecaketime.com or call +91 123 456 7890.
+[![GitHub](https://img.shields.io/badge/GitHub-NYN--05-181717?style=for-the-badge&logo=github)](https://github.com/NYN-05)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-TheCakeTime-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/company/thecaketime)
 
-## Credits
-
-Built with ❤️ by TheCakeTime Team
-
-## Iterface Design
-![UI Interfce](UiDesign.png)
+</div>

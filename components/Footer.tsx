@@ -132,7 +132,7 @@ export default function Footer() {
           <p className="text-pink-200 text-sm">
             Made with <Heart size={14} className="inline text-red-400" /> by TheCakeTime Team
           </p>
-          <p className="text-pink-300/80 text-xs mt-2">
+          <p className="text-pink-300/80 text-xs mt-2" suppressHydrationWarning>
             &copy; {new Date().getFullYear()} TheCakeTime. All rights reserved.
           </p>
         </div>
